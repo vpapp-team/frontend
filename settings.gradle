@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':vpapp-frontend-types'
