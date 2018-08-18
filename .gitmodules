@@ -1,6 +1,6 @@
 [submodule "app"]
 	path = app
 	url = git@github.com:vpapp-team/frontend-app.git
-[submodule "vpapp-frontend-types"]
-	path = vpapp-frontend-types
+[submodule "types"]
+	path = types
 	url = git@github.com:vpapp-team/frontend-types.git
