@@ -4,3 +4,6 @@
 [submodule "types"]
 	path = types
 	url = git@github.com:vpapp-team/frontend-types.git
+[submodule "data"]
+	path = data
+	url = git@github.com:vpapp-team/frontend-data.git
