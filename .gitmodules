@@ -7,3 +7,6 @@
 [submodule "data"]
 	path = data
 	url = git@github.com:vpapp-team/frontend-data.git
+[submodule "util"]
+	path = util
+	url = git@github.com:vpapp-team/frontend-util.git

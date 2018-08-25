@@ -24,7 +24,7 @@ script:
 git: # this is needed because I have ssh urls instead of https
   submodules: false
 before_install:
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules # replaces ssh with https
+- [ -f ".gitmodules" ] && sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules # replaces ssh with https
   - git submodule update --init --recursive # clones submodules as needed
 #after_success:
 #  - bash <(curl -s https://codecov.io/bash)
