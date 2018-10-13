@@ -1,0 +1,10 @@
+$dokka.format:markdown
+$dokka.linkExtension:md
+
+com.molikuner.nigb
+com.molikuner.nigb.domain.usecases
+com.molikuner.nigb.ui
+com.molikuner.nigb.ui.menu
+com.molikuner.nigb.ui.standin
+com.molikuner.nigb.viewmodel
+com.molikuner.nigb.viewmodel.factory

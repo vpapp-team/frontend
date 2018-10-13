@@ -1,0 +1,5 @@
+[data](../../index.md) / [com.molikuner.nigb.data.types](../index.md) / [StandIn](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`StandIn(id: UUID, dropped: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`, date: Time, room: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, message: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, subject: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, teacher: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, origSubject: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, origTeacher: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, clazz: ClazzDiscriminator? = null, lesson: LessonDiscriminator? = null)`
