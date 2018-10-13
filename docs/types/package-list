@@ -1,4 +1,4 @@
-$dokka.format:markdown
+$dokka.format:gfm
 $dokka.linkExtension:md
 $dokka.location:com.molikuner.nigb.types$toClazzDiscriminator(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-clazz-discriminator.md
 $dokka.location:com.molikuner.nigb.types$toRange(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-range.md

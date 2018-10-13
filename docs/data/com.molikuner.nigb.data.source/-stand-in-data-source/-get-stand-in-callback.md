@@ -6,6 +6,7 @@
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [onDataLoaded](../-data-load-callback/on-data-loaded.md) | `abstract fun onDataLoaded(data: `[`T`](../-data-load-callback/index.md#T)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [onDataNotAvailable](../-data-load-callback/on-data-not-available.md) | `abstract fun onDataNotAvailable(e: `[`Exception`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html)`? = null): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-

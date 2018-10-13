@@ -4,6 +4,7 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Event](-event/index.md) | `open class Event<out T>` |
 | [EventObserver](-event-observer/index.md) | `class EventObserver<T> : Observer<`[`Event`](-event/index.md)`<`[`T`](-event-observer/index.md#T)`>>` |
-

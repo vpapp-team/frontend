@@ -12,6 +12,8 @@ structure in the request
 
 ### Enum Values
 
+| Name | Summary |
+|---|---|
 | [TIMETABLE](-t-i-m-e-t-a-b-l-e.md) | Timetable endpoint of the [backend](https://nigb.app) |
 | [TEACHER](-t-e-a-c-h-e-r.md) | Teacher endpoint of the [backend](https://nigb.app) |
 | [MENU](-m-e-n-u.md) | Menu endpoint of the [backend](https://nigb.app) |
@@ -23,5 +25,6 @@ structure in the request
 
 ### Companion Object Functions
 
+| Name | Summary |
+|---|---|
 | [of](of.md) | `fun of(endpointNum: `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)`): `[`APIEndpoints`](./index.md)<br>Creation function to simply create a [APIEndpoints](./index.md) of a [Byte](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html) returned by the [backend](https://nigb.app) |
-

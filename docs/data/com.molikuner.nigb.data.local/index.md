@@ -4,5 +4,6 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [AppDatabase](-app-database/index.md) | `abstract class AppDatabase : RoomDatabase` |
-

@@ -15,5 +15,6 @@ Output:  Data saved
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `MenuLocalDataSource()`<br>Role:    Storing data on disk (DB) |
-

@@ -6,10 +6,14 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Lesson(id: UUID, weekday: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, lesson: LessonDiscriminator, room: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, teacher: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, subject: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, clazz: ClazzDiscriminator, length: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, regularity: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [clazz](clazz.md) | `val clazz: ClazzDiscriminator` |
 | [id](id.md) | `val id: UUID` |
 | [length](length.md) | `val length: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html) |
@@ -22,11 +26,14 @@
 
 ### Companion Object Properties
 
+| Name | Summary |
+|---|---|
 | [REGUALRITY_ALWAYS](-r-e-g-u-a-l-r-i-t-y_-a-l-w-a-y-s.md) | `const val REGUALRITY_ALWAYS: `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html) |
 | [REGUALRITY_EVEN](-r-e-g-u-a-l-r-i-t-y_-e-v-e-n.md) | `const val REGUALRITY_EVEN: `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html) |
 | [REGUALRITY_UNEVEN](-r-e-g-u-a-l-r-i-t-y_-u-n-e-v-e-n.md) | `const val REGUALRITY_UNEVEN: `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html) |
 
 ### Companion Object Functions
 
+| Name | Summary |
+|---|---|
 | [of](of.md) | `fun of(json: `[`JSONArray`](https://developer.android.com/reference/org/json/JSONArray.html)`): `[`Lesson`](./index.md) |
-

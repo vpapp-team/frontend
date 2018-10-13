@@ -1,4 +1,4 @@
-$dokka.format:markdown
+$dokka.format:gfm
 $dokka.linkExtension:md
 $dokka.location:com.molikuner.util$addFragmentToActivity(android.support.v7.app.AppCompatActivity, android.support.v4.app.Fragment, kotlin.String)com.molikuner.util/android.support.v7.app.-app-compat-activity/add-fragment-to-activity.md
 $dokka.location:com.molikuner.util$iterator(org.json.JSONArray)com.molikuner.util/org.json.-j-s-o-n-array/iterator.md

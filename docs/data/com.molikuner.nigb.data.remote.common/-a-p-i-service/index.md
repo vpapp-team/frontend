@@ -11,5 +11,6 @@ request to the [backend](https://nigb.app)
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [request](request.md) | `suspend fun request(endpoint: `[`APIEndpoints`](../-a-p-i-endpoints/index.md)`, requestBody: RequestBody? = null, additionalRequestHeader: `[`Map`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>? = null): Response`<br>Function to request the [backend](https://nigb.app) |
-

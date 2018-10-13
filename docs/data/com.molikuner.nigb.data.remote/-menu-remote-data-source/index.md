@@ -16,9 +16,12 @@ Output:  Result
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `MenuRemoteDataSource()`<br>Role:    construct the request data     Fetching data from a service |
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [request](request.md) | `suspend fun request(): Result<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>` |
-

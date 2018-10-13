@@ -2,6 +2,8 @@
 
 ### Packages
 
+| Name | Summary |
+|---|---|
 | [com.molikuner.nigb.data](com.molikuner.nigb.data/index.md) |  |
 | [com.molikuner.nigb.data.entity](com.molikuner.nigb.data.entity/index.md) |  |
 | [com.molikuner.nigb.data.local](com.molikuner.nigb.data.local/index.md) |  |

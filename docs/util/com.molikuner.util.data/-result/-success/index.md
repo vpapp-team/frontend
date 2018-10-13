@@ -6,9 +6,12 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Success(data: `[`T`](index.md#T)`)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [data](data.md) | `val data: `[`T`](index.md#T) |
-

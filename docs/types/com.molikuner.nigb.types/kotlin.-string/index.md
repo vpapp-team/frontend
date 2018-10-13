@@ -2,9 +2,10 @@
 
 ### Extensions for kotlin.String
 
+| Name | Summary |
+|---|---|
 | [toClazzDiscriminator](to-clazz-discriminator.md) | `fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.toClazzDiscriminator(): `[`ClazzDiscriminator`](../-clazz-discriminator/index.md) |
 | [toRange](to-range.md) | `fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.toRange(): `[`Range`](../-range/index.md)`?` |
 | [toTime](to-time.md) | `fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.toTime(): `[`Time`](../-time/index.md)`?` |
 | [toUUID](to-u-u-i-d.md) | `fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.toUUID(): `[`UUID`](../-u-u-i-d/index.md)`?` |
 | [toVersion](to-version.md) | `fun `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`.toVersion(): `[`Version`](../-version/index.md)`?` |
-

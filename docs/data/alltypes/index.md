@@ -2,6 +2,8 @@
 
 ### All Types
 
+| Name | Summary |
+|---|---|
 | [com.molikuner.nigb.data.remote.common.APIEndpoints](../com.molikuner.nigb.data.remote.common/-a-p-i-endpoints/index.md) | Enum of APIEndpoints in the [backend](https://nigb.app) |
 | [com.molikuner.nigb.data.remote.common.APIService](../com.molikuner.nigb.data.remote.common/-a-p-i-service/index.md) | Singleton object to do requests to the [backend](https://nigb.app) |
 | [com.molikuner.nigb.data.local.AppDatabase](../com.molikuner.nigb.data.local/-app-database/index.md) |  |
@@ -28,4 +30,3 @@
 | [com.molikuner.nigb.data.source.TaskCallback](../com.molikuner.nigb.data.source/-task-callback/index.md) |  |
 | [com.molikuner.nigb.data.Teacher](../com.molikuner.nigb.data/-teacher/index.md) |  |
 | [com.molikuner.nigb.data.Timetable](../com.molikuner.nigb.data/-timetable/index.md) |  |
-

@@ -4,7 +4,8 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [DataLoadCallback](-data-load-callback/index.md) | `interface DataLoadCallback<in T>` |
 | [StandInDataSource](-stand-in-data-source/index.md) | `interface StandInDataSource` |
 | [TaskCallback](-task-callback/index.md) | `interface TaskCallback` |
-

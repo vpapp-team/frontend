@@ -6,6 +6,8 @@
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [hour](hour.md) | `val hour: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [isWeekday](is-weekday.md) | `val isWeekday: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
 | [min](min.md) | `val min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
@@ -14,6 +16,8 @@
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [add](add.md) | `fun add(time: `[`Time`](./index.md)`): `[`Time`](./index.md) |
 | [addDay](add-day.md) | `fun addDay(onlyWeek: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, days: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 1): `[`Time`](./index.md) |
 | [clone](clone.md) | `fun clone(): `[`Time`](./index.md) |
@@ -28,6 +32,8 @@
 
 ### Companion Object Properties
 
+| Name | Summary |
+|---|---|
 | [DAY](-d-a-y.md) | `const val DAY: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
 | [FRIDAY](-f-r-i-d-a-y.md) | `const val FRIDAY: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [HOUR](-h-o-u-r.md) | `const val HOUR: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
@@ -44,6 +50,7 @@
 
 ### Companion Object Functions
 
+| Name | Summary |
+|---|---|
 | [getHour](get-hour.md) | `fun getHour(time: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)` = Time.now): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [of](of.md) | `fun of(time: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Time`](./index.md)<br>`fun of(time: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)` = Time.now, representsDay: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, onlyWeek: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false): `[`Time`](./index.md)<br>`fun of(day: `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)`, onlyWeek: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true): `[`Time`](./index.md)<br>`fun of(day: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Time`](./index.md) |
-

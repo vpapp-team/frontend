@@ -6,9 +6,12 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `EventObserver(onEventUnconsumedContent: (`[`T`](index.md#T)`) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`)` |
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [onChanged](on-changed.md) | `fun onChanged(event: `[`Event`](../-event/index.md)`<`[`T`](index.md#T)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-

@@ -4,6 +4,8 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [ClazzDiscriminator](-clazz-discriminator/index.md) | `data class ClazzDiscriminator` |
 | [LessonDiscriminator](-lesson-discriminator/index.md) | `class LessonDiscriminator` |
 | [LessonRange](-lesson-range/index.md) | `data class LessonRange` |
@@ -14,5 +16,6 @@
 
 ### Extensions for External Classes
 
+| Name | Summary |
+|---|---|
 | [kotlin.String](kotlin.-string/index.md) |  |
-

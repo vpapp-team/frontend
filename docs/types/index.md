@@ -2,6 +2,8 @@
 
 ### Packages
 
+| Name | Summary |
+|---|---|
 | [com.molikuner.nigb.types](com.molikuner.nigb.types/index.md) |  |
 
 ### Index
