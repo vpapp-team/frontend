@@ -1,8 +1,0 @@
-$dokka.format:gfm
-$dokka.linkExtension:md
-$dokka.location:com.molikuner.nigb.types$toClazzDiscriminator(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-clazz-discriminator.md
-$dokka.location:com.molikuner.nigb.types$toRange(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-range.md
-$dokka.location:com.molikuner.nigb.types$toTime(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-time.md
-$dokka.location:com.molikuner.nigb.types$toUUID(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-u-u-i-d.md
-$dokka.location:com.molikuner.nigb.types$toVersion(kotlin.String)com.molikuner.nigb.types/kotlin.-string/to-version.md
-com.molikuner.nigb.types
