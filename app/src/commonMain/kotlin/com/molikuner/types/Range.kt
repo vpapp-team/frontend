@@ -27,12 +27,12 @@ data class Range internal constructor(
         "${if (this.start != null) this.start.toString() else ""}-${if (this.end != null) this.end.toString() else ""}"
 
     companion object {
-        private const val FROM_TO_REGEXP = """^(DT?)[0-9]+-(\\1[0-9]+)?$|^-(DT?)[0-9]+$"""
-        private const val AROUND_REGEXP = """^(DT?)[0-9]+\\+-\\1[0-9]+$"""
+        private const val FROM_TO_REGEXP = """^(DT?)[0-9]+-(\1[0-9]+)?$|^-(DT?)[0-9]+$"""
+        private const val AROUND_REGEXP = """^(DT?)[0-9]+\+-\1[0-9]+$"""
 
         fun of(range: String): Range {
             if (validate(range)) throw IllegalArgumentException("range: '$range' has wrong format")
-            val parts = range.split("""\\+?-""".toRegex())
+            val parts = range.split("""\+?-""".toRegex())
             val first = parts[0].toTime()
             val second = parts[1].toTime()
             val isAround = "+-" in range

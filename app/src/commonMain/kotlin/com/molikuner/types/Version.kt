@@ -13,14 +13,14 @@ data class Version(
 
 
     companion object {
-        private const val VERSION_REGEXP = """^v(?>[0-9a-f]{1,2}\\.){2}[0-9a-f]{1,2}$"""
+        private const val VERSION_REGEXP = """^v(?>[0-9a-f]{1,2}\.){2}[0-9a-f]{1,2}$"""
 
         internal fun validate(version: String) = version.matches(VERSION_REGEXP.toRegex(RegexOption.IGNORE_CASE))
 
         fun of(version: String): Version {
             if (!Version.validate(version))
                 throw IllegalArgumentException("version: '$version' has wrong format")
-            val parts = version.split("\\.")
+            val parts = version.substring(1).split(".")
 
             return Version(
                 parts[0].toInt(16),
