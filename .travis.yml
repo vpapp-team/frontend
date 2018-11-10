@@ -4,8 +4,13 @@ android:
   components:
     - tools
     - platform-tools
+    - build-tools-28.0.3
+    - android-28
 git:
   submodules: false
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' app/src/commonMain/kotlin/com/molikuner/vpapp/.gitmodules
   - git submodule update --init --recursive
+
