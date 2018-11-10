@@ -18,7 +18,7 @@ data class Range internal constructor(
 
     operator fun contains(testDate: Time): Boolean {
         val date = if (!testDate.representsDay && this.representsDay)
-            ("D" + testDate.day).toTime()!!
+            Time.of("D${testDate.day}")
         else testDate
         return this.start?.time ?: 0 <= date.time && date.time <= this.end?.time ?: Long.MAX_VALUE
     }

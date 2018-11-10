@@ -3,17 +3,10 @@ package com.molikuner.types
 import com.molikuner.util.Platform
 import kotlin.math.absoluteValue
 
-class Time(
-    time: Long,
+data class Time(
+    val time: Long,
     internal val representsDay: Boolean
 ) {
-
-    var time: Long
-        private set
-
-    init {
-        this.time = time
-    }
 
     val isWeekday: Boolean
         get() = this.weekday !in intArrayOf(SATURDAY, SUNDAY)
@@ -50,36 +43,38 @@ class Time(
     operator fun compareTo(time: Time) = (this.time - time.time).toInt()
 
     fun addDay(onlyWeek: Boolean = true, days: Int = 1): Time {
-        if (days != 1) {
-            (0 until days.absoluteValue).forEach { this.addDay(onlyWeek) }
+        return if (days == 0) {
+            this.copy()
+        } else if (days > 0) {
+            var t = this.copy(time = this.time + DAY)
+            if (onlyWeek && !t.isWeekday)
+                t = t.addDay(onlyWeek = false, days = 7 - this.weekday)
+            if (days > 1) {
+                t.addDay(onlyWeek, days - 1)
+            } else t
         } else {
-            this.time = this.time + DAY
-            if (onlyWeek && !this.isWeekday)
-                this.addDay(onlyWeek = false, days = 7 - this.weekday)
+            this.remDay(onlyWeek, days.absoluteValue)
         }
-        return this
     }
 
     fun remDay(onlyWeek: Boolean = true, days: Int = 1): Time {
-        if (days != 1) {
-            (0 until days.absoluteValue).forEach { this.remDay(onlyWeek) }
+        return if (days == 0) {
+            this.copy()
+        } else if (days > 0) {
+            var t = this.copy(time = this.time - DAY)
+            if (onlyWeek && !t.isWeekday)
+                t = t.remDay(onlyWeek = false, days = this.weekday - 4)
+            if (days > 1) {
+                t.remDay(onlyWeek, days - 1)
+            } else t
         } else {
-            this.time = this.time - DAY
-            if (onlyWeek && !this.isWeekday)
-                this.remDay(onlyWeek = false, days = this.weekday - 4)
+            this.addDay(onlyWeek, days.absoluteValue)
         }
-        return this
     }
 
-    fun rem(time: Time): Time {
-        this.time = this.time - time.time
-        return this
-    }
+    fun rem(time: Time): Time = this.copy(time = this.time - time.time)
 
-    fun add(time: Time): Time {
-        this.time = this.time + time.time
-        return this
-    }
+    fun add(time: Time): Time = this.copy(time = this.time + time.time)
 
     fun matches(day: Byte, onlyWeek: Boolean = true): Boolean {
         return when (day) {
@@ -199,7 +194,7 @@ class Time(
         return "D${if (this.representsDay) "${this.time / DAY}" else "T${this.time}"}"
     }
 
-    //fun toString(pattern: String) = SimpleDateFormat(pattern, Locale.getDefault()).format(this)
+    //fun format(pattern: String) = DateFormat(pattern, Platform.defaultLocale).format(this)
 }
 
 fun String.toTime(): Time? = if (Time.validate(this.trim())) Time.of(

@@ -1,0 +1,11 @@
+language: android
+jdk: oraclejdk8
+android:
+  components:
+    - tools
+    - platform-tools
+git:
+  submodules: false
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
