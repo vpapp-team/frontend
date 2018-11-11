@@ -1,0 +1,5 @@
+[app](../../index.md) / [com.molikuner.vpapp.types.data](../index.md) / [Room](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`Room(id: `[`UUID`](../../com.molikuner.types/-u-u-i-d/index.md)`, name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, uri: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, x_cord: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, y_cord: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, height: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, width: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, timetable: `[`Array`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)`<`[`Timetable`](../-timetable/index.md)`>? = null)`

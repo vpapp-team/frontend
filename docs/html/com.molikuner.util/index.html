@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.molikuner.util - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="./index.html">com.molikuner.util</a><br/>
+<br/>
+<h2>Package com.molikuner.util</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-a-p-i-result/index.html">APIResult</a></p>
+</td>
+<td>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">APIResult</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-content-view-binding-delegate/index.html">ContentViewBindingDelegate</a><br/>
+(android)</p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ContentViewBindingDelegate</span><span class="symbol">&lt;</span><span class="keyword">in</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-event/index.html">Event</a><br/>
+(android)</p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Event</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-event-observer/index.html">EventObserver</a><br/>
+(android)</p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">EventObserver</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-platform/index.html">Platform</a><br/>
+(android, ios)</p>
+</td>
+<td>
+<code><span class="keyword">expect</span> <span class="keyword">object </span><span class="identifier">Platform</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-result/index.html">Result</a></p>
+</td>
+<td>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">Result</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="exhaustive.html">exhaustive</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="exhaustive.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="identifier">exhaustive</span><span class="symbol">: </span><a href="exhaustive.html#T"><span class="identifier">T</span></a></code>
+<p>Make a when(x) call exhaustive</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="content-view.html">contentView</a><br/>
+(android)</p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">contentView</span><span class="symbol">(</span><span class="identifier" id="com.molikuner.util$contentView(kotlin.Int)/layoutRes">layoutRes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-content-view-binding-delegate/index.html"><span class="identifier">ContentViewBindingDelegate</span></a><span class="symbol">&lt;</span><a href="content-view.html#R"><span class="identifier">R</span></a><span class="symbol">,</span>&nbsp;<a href="content-view.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-errored.html">isErrored</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="-result/index.html"><span class="identifier">Result</span></a><span class="symbol">&lt;</span><a href="is-errored.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">isErrored</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="safe-api-call.html">safeApiCall</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <span class="identifier">safeApiCall</span><span class="symbol">(</span><span class="identifier" id="com.molikuner.util$safeApiCall(kotlin.String, kotlin.Byte, kotlin.SuspendFunction0((com.molikuner.util.APIResult((com.molikuner.util.safeApiCall.T)))))/errorMessage">errorMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.molikuner.util$safeApiCall(kotlin.String, kotlin.Byte, kotlin.SuspendFunction0((com.molikuner.util.APIResult((com.molikuner.util.safeApiCall.T)))))/leftTries">leftTries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html"><span class="identifier">Byte</span></a>&nbsp;<span class="symbol">=</span>&nbsp;2<span class="symbol">, </span><span class="identifier" id="com.molikuner.util$safeApiCall(kotlin.String, kotlin.Byte, kotlin.SuspendFunction0((com.molikuner.util.APIResult((com.molikuner.util.safeApiCall.T)))))/call">call</span><span class="symbol">:</span>&nbsp;<span class="keyword">suspend </span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="-a-p-i-result/index.html"><span class="identifier">APIResult</span></a><span class="symbol">&lt;</span><a href="safe-api-call.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-a-p-i-result/index.html"><span class="identifier">APIResult</span></a><span class="symbol">&lt;</span><a href="safe-api-call.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Function to make simple safe <a href="safe-api-call.html#com.molikuner.util$safeApiCall(kotlin.String, kotlin.Byte, kotlin.SuspendFunction0((com.molikuner.util.APIResult((com.molikuner.util.safeApiCall.T)))))/call">calls</a> (suspend)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

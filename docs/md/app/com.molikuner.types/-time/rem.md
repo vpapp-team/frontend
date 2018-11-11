@@ -1,0 +1,5 @@
+[app](../../index.md) / [com.molikuner.types](../index.md) / [Time](index.md) / [rem](./rem.md)
+
+# rem
+
+`fun rem(time: `[`Time`](index.md)`): `[`Time`](index.md)

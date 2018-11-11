@@ -1,0 +1,5 @@
+[app](../../index.md) / [com.molikuner.vpapp.types.data](../index.md) / [StandIn](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`StandIn(id: `[`UUID`](../../com.molikuner.types/-u-u-i-d/index.md)`, dropped: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`, date: `[`Time`](../../com.molikuner.types/-time/index.md)`, room: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, message: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, subject: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, teacher: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, origSubject: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, origTeacher: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, clazz: `[`ClazzDiscriminator`](../-clazz-discriminator/index.md)`? = null, lesson: `[`LessonDiscriminator`](../-lesson-discriminator/index.md)`? = null)`

@@ -1,0 +1,15 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+$dokka.location:com.molikuner.types$toRange(kotlin.String)com.molikuner.types/kotlin.-string/to-range.md
+$dokka.location:com.molikuner.types$toTime(kotlin.String)com.molikuner.types/kotlin.-string/to-time.md
+$dokka.location:com.molikuner.types$toUUID(kotlin.String)com.molikuner.types/kotlin.-string/to-u-u-i-d.md
+$dokka.location:com.molikuner.types$toVersion(kotlin.String)com.molikuner.types/kotlin.-string/to-version.md
+$dokka.location:com.molikuner.vpapp.types.data$toClazzDiscriminator(kotlin.String)com.molikuner.vpapp.types.data/kotlin.-string/to-clazz-discriminator.md
+com.molikuner.types
+com.molikuner.util
+com.molikuner.vpapp.types.data
+com.molikuner.vpapp.types.request
+com.molikuner.vpapp.types.responses
+com.molikuner.vpapp.ui
+com.molikuner.vpapp.ui.viewmodel.main
+com.molikuner.vpapp.usecase

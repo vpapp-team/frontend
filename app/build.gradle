@@ -1,8 +1,10 @@
 plugins {
     id 'kotlin-multiplatform'
-    id 'org.jetbrains.dokka-android'
-    id 'kotlinx-serialization'
     id 'kotlin-kapt'
+    id 'com.android.application'
+    id 'kotlinx-serialization'
+    id 'kotlin-android-extensions'
+    id 'org.jetbrains.dokka-android'
 }
 repositories {
     google()
@@ -18,8 +20,6 @@ repositories {
     }
     mavenCentral()
 }
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     dataBinding {
@@ -78,8 +78,8 @@ kotlin {
         }
         commonTest {
             dependencies {
-        		implementation 'org.jetbrains.kotlin:kotlin-test-common'
-        		implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
+                implementation 'org.jetbrains.kotlin:kotlin-test-common'
+                implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
             }
         }
         androidMain {
@@ -125,5 +125,47 @@ task copyFramework {
 
 dokka {
     outputFormat = 'gfm'
-    outputDirectory = 'docs'
+    outputDirectory = 'docs/md'
+
+    impliedPlatforms = ["Common"] // This will force platform tags for all non-common sources e.g. "JVM"
+    kotlinTasks {
+        // dokka fails to retrieve sources from MPP-tasks so they must be set empty to avoid exception
+        // use sourceRoot instead (see below)
+        []
+    }
+    sourceRoot {
+        // assuming there is only a single source dir...
+        path = kotlin.sourceSets.commonMain.kotlin.srcDirs[0]
+        platforms = ["Common"]
+    }
+    sourceRoot {
+        // assuming there is only a single source dir...
+        path = kotlin.sourceSets.androidMain.kotlin.srcDirs[2]
+        platforms = ["android"]
+    }
+    sourceRoot {
+        // assuming there is only a single source dir...
+        path = kotlin.sourceSets.iosMain.kotlin.srcDirs[0]
+        platforms = ["ios"]
+    }
+}
+
+task dokkaHtml(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'html'
+    outputDirectory = "docs/html"
+
+    impliedPlatforms = ["Common"]
+    kotlinTasks { [] }
+    sourceRoot {
+        path = kotlin.sourceSets.commonMain.kotlin.srcDirs[0]
+        platforms = ["Common"]
+    }
+    sourceRoot {
+        path = kotlin.sourceSets.androidMain.kotlin.srcDirs[2]
+        platforms = ["android"]
+    }
+    sourceRoot {
+        path = kotlin.sourceSets.iosMain.kotlin.srcDirs[0]
+        platforms = ["ios"]
+    }
 }
