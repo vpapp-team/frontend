@@ -1,6 +1,6 @@
 # frontend
 
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=vpapp-team/frontend)](https://dependabot.com) 
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=vpapp-team/frontend)](https://app.dependabot.com/accounts/vpapp-team/#frontend)
 [![Build Status](https://travis-ci.com/vpapp-team/frontend.svg?branch=master)](https://travis-ci.com/vpapp-team/frontend)
 
 ## What's this?
@@ -15,7 +15,7 @@ show up for class.
 ## Are there docs?
 
 The documentation can be found in the docs folder. (html & md)  
-I hope she's up-to-date.
+I hope it's up-to-date.
 
 
 ## When is it finished?
