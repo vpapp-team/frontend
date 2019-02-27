@@ -2,9 +2,9 @@ package com.molikuner.vpapp.data.types
 
 import com.molikuner.vpapp.data.local.MOTD
 import com.molikuner.vpapp.data.remote.types.StandInResponse
+import com.molikuner.vpapp.data.util.EnumNumberSerializer
 import com.molikuner.vpapp.types.Time
 import com.molikuner.vpapp.types.UUID
-import com.molikuner.vpapp.data.util.EnumNumberSerializer
 import com.molikuner.vpapp.util.SerialArrayClassDescImpl
 import com.molikuner.vpapp.util.use
 import kotlinx.serialization.Decoder
@@ -32,7 +32,9 @@ object MOTDSerializer : KSerializer<MOTD> {
         return decoder.use(descriptor) {
             MOTD.Impl(
                 id = decodeSerializableElement(0, UUID.serializer()).also {
-                    if (decodeIntElement(1) != StandInResponse.MOTD) throw IllegalArgumentException("trying to parse a standIn as motd")
+                    if (decodeIntElement(1) != StandInResponse.MOTD) {
+                        throw IllegalArgumentException("trying to parse a standIn as motd")
+                    }
                 },
                 type = decodeSerializableElement(2, EnumNumberSerializer(MOTDTypes::class)),
                 day = decodeSerializableElement(3, Time.Day.serializer()),
@@ -52,9 +54,4 @@ object MOTDSerializer : KSerializer<MOTD> {
     }
 }
 
-enum class MOTDTypes {
-    OTHER, ABSENT_CLASSES, ABSENT_TEACHER;
-
-    val id: Int
-        get() = this.ordinal
-}
+enum class MOTDTypes { OTHER, ABSENT_CLASSES, ABSENT_TEACHER }

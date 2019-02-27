@@ -35,6 +35,7 @@ sealed class APIResult<out T : Any> {
     sealed class Error : APIResult<Nothing>() {
         @Serializable
         data class BackendError(val error: String) : Error()
+
         object Moved : Error()
         object ProxyError : Error()
         object ServerError : Error()
@@ -47,11 +48,15 @@ sealed class APIResult<out T : Any> {
             object NothingNew : AbstractAPIError(304)
             data class APIError(override val responseCode: Int) : AbstractAPIError(responseCode)
         }
+
         data class LocalError(val message: String, val exception: Exception) : Error()
     }
 
     companion object {
-        suspend inline fun <reified T : Any> ofHttpResponse(response: HttpResponse, allowNothingNew: Boolean = false): APIResult<T> {
+        suspend inline fun <reified T : Any> ofHttpResponse(
+            response: HttpResponse,
+            allowNothingNew: Boolean = false
+        ): APIResult<T> {
             return when (val code = response.status) {
                 HttpStatusCode.OK -> Success(response.receive())
                 HttpStatusCode.NothingNew -> if (allowNothingNew) NothingNew else APIError(code.value)

@@ -1,0 +1,4 @@
+formatting:
+  android: true
+
+failFast: true

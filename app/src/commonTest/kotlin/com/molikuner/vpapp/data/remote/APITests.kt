@@ -22,7 +22,9 @@ import kotlin.test.Test
 class APITests {
     private val api = with(MockEngine {
         if (headers["User-Agent"]?.isNotEmpty() != true) error("useragent is empty")
-        if (headers["platform"]?.let { it == "android" || it == "ios" } != true) error("unknown or empty platform: '${headers["platform"]}'")
+        if (headers["platform"]?.let { it == "android" || it == "ios" } != true) {
+            error("unknown or empty platform: '${headers["platform"]}'")
+        }
         simpleTry("malformed version string: '${headers["version"]}'") {
             Version(headers["version"] ?: error("version is missing"))
         }

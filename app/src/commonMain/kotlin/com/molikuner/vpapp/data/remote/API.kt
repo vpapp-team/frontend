@@ -30,7 +30,12 @@ interface API {
         return APIResult.ofHttpResponse(request("stand-in", status), allowNothingNew = true)
     }
 
-    private suspend fun request(endpoint: String, reqBody: Any = EmptyContent, reqMethod: HttpMethod = HttpMethod.Post, vararg header: Pair<String, String>): HttpResponse {
+    private suspend fun request(
+        endpoint: String,
+        reqBody: Any = EmptyContent,
+        reqMethod: HttpMethod = HttpMethod.Post,
+        vararg header: Pair<String, String>
+    ): HttpResponse {
         return this@API.client.call {
             method = reqMethod
             url {

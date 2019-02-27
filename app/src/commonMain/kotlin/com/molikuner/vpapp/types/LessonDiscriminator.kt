@@ -15,6 +15,7 @@ data class LessonDiscriminator(
     val discriminator: String
 ) {
     val excpetion: Boolean = true
+
     init {
         // TODO exception
         // TODO check format

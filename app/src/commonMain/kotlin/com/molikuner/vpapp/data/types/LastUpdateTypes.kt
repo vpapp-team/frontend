@@ -1,8 +1,8 @@
 package com.molikuner.vpapp.data.types
 
 import com.molikuner.vpapp.data.local.LastUpdate
-import com.molikuner.vpapp.types.Time
 import com.molikuner.vpapp.data.util.EnumNumberSerializer
+import com.molikuner.vpapp.types.Time
 import com.molikuner.vpapp.util.SerialArrayClassDescImpl
 import com.molikuner.vpapp.util.use
 import kotlinx.serialization.Decoder
@@ -38,6 +38,4 @@ object LastUpdateSerializer : KSerializer<LastUpdate> {
     }
 }
 
-enum class LastUpdateTypes {
-    TIMETABLE, ROOM, TEACHERS, MENU, STAND_IN, CALENDAR;
-}
+enum class LastUpdateTypes { TIMETABLE, ROOM, TEACHERS, MENU, STAND_IN, CALENDAR }

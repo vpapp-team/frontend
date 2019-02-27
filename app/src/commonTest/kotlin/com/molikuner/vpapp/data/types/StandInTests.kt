@@ -31,19 +31,21 @@ class StandInTests {
         )
         assertEquals(
             standInJson,
-            Json.stringify(StandInSerializer, StandIn.Impl(
-                id = UUID("uuid@random.de"),
-                day = Time.Day(unix = 0),
-                message = null,
-                teacher = null,
-                subject = null,
-                clazz = null,
-                lesson = null,
-                room = null,
-                origTeacher = null,
-                origSubject = null,
-                isEliminated = false
-            )),
+            Json.stringify(
+                StandInSerializer, StandIn.Impl(
+                    id = UUID("uuid@random.de"),
+                    day = Time.Day(unix = 0),
+                    message = null,
+                    teacher = null,
+                    subject = null,
+                    clazz = null,
+                    lesson = null,
+                    room = null,
+                    origTeacher = null,
+                    origSubject = null,
+                    isEliminated = false
+                )
+            ),
             "stringify object to json"
         )
     }

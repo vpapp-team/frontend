@@ -7,6 +7,7 @@ import kotlinx.serialization.StructureKind
 import kotlinx.serialization.elementDescriptors
 import kotlinx.serialization.internal.BooleanDescriptor
 import kotlinx.serialization.internal.StringDescriptor
+import kotlin.collections.set
 import kotlin.reflect.KProperty1
 
 abstract class SerialArrayClassDescImpl(
@@ -17,11 +18,19 @@ abstract class SerialArrayClassDescImpl(
 
     private val _items: MutableMap<String, Pair<Int, Pair<SerialDescriptor, Boolean>>> = mutableMapOf()
     private val items: Map<String, Pair<Int, Pair<SerialDescriptor, Boolean>>> by lazy { _items }
-    private val indexedItems: Map<Int, Pair<String, Pair<SerialDescriptor, Boolean>>> by lazy { items.entries.associate { it.value.first to (it.key to it.value.second) } }
+    private val indexedItems: Map<Int, Pair<String, Pair<SerialDescriptor, Boolean>>> by lazy {
+        items.entries.associate { it.value.first to (it.key to it.value.second) }
+    }
 
     private val classAnnotations: List<Annotation> = classAnnotations.toList()
 
-    fun addElement(name: String, listIndex: Int, descriptor: SerialDescriptor, isNullable: Boolean = false, isOptional: Boolean = false) {
+    fun addElement(
+        name: String,
+        listIndex: Int,
+        descriptor: SerialDescriptor,
+        isNullable: Boolean = false,
+        isOptional: Boolean = false
+    ) {
         _items[name] = listIndex to (descriptor.nullable(isNullable) to isOptional)
     }
 
@@ -38,7 +47,9 @@ abstract class SerialArrayClassDescImpl(
         @Suppress("UNCHECKED_CAST") val descriptor: SerialDescriptor = when (T::class) {
             String::class -> StringDescriptor.of(property as KProperty1<*, String>)
             Boolean::class -> BooleanDescriptor.of(property as KProperty1<*, Boolean>)
-            else -> throw IllegalArgumentException("unknown type ${T::class.simpleName} for element; only string and boolean are allowed")
+            else -> throw IllegalArgumentException(
+                "unknown type ${T::class.simpleName} for element; only string and boolean are allowed"
+            )
         }
         this.addElement(property, listIndex, descriptor, isOptional)
     }

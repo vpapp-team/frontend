@@ -28,7 +28,10 @@ data class StandInResponse(
     val addMOTD: List<MOTD>,
     val remove: List<UUID>
 ) : CommonResponse(requestTime) {
-    private val add: List<String> by lazy { addMOTD.map { Json.plain.stringify(MOTDSerializer, it) } + addStandIn.map { Json.plain.stringify(StandInSerializer, it) } }
+    private val add: List<String> by lazy {
+        addMOTD.map { Json.plain.stringify(MOTDSerializer, it) } +
+                addStandIn.map { Json.plain.stringify(StandInSerializer, it) }
+    }
 
     @Serializer(forClass = StandInResponse::class)
     companion object : KSerializer<StandInResponse> {

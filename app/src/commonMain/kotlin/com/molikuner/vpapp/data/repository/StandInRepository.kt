@@ -10,6 +10,18 @@ object StandInRepository {
     }
 
     suspend fun add(s: StandIn) {
-        DB.queries.addStandIn(s.id, s.day, s.message, s.teacher, s.subject, s.clazz, s.lesson, s.room, s.origTeacher, s.origSubject, s.isEliminated)
+        DB.queries.addStandIn(
+            s.id,
+            s.day,
+            s.message,
+            s.teacher,
+            s.subject,
+            s.clazz,
+            s.lesson,
+            s.room,
+            s.origTeacher,
+            s.origSubject,
+            s.isEliminated
+        )
     }
 }
