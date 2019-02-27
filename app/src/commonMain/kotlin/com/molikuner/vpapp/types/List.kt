@@ -5,7 +5,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 
-class ListAdapter<T: Any>(private val serializer: KSerializer<T>): ColumnAdapter<List<T>, String> {
+class ListAdapter<T : Any>(private val serializer: KSerializer<T>) : ColumnAdapter<List<T>, String> {
     override fun decode(databaseValue: String): List<T> {
         return Json.parse(serializer.list, databaseValue)
     }

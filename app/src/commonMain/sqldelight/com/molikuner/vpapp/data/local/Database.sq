@@ -1,5 +1,6 @@
 import com.molikuner.vpapp.data.types.LastUpdateTypes;
 import com.molikuner.vpapp.data.types.LessonRegularity;
+import com.molikuner.vpapp.data.types.MOTDTypes;
 import com.molikuner.vpapp.data.types.TimetableTypes;
 import com.molikuner.vpapp.types.ClazzDiscriminator;
 import com.molikuner.vpapp.types.LessonDiscriminator;
@@ -10,7 +11,7 @@ import kotlin.collections.List;
 
 CREATE TABLE StandIn (
     id              TEXT    AS UUID                 NOT NULL    PRIMARY KEY,
-    day             TEXT    AS Time                 NOT NULL,
+    day             TEXT    AS Time.Day             NOT NULL,
     message         TEXT    AS String,
     teacher         TEXT    AS String,
     subject         TEXT    AS String,
@@ -29,11 +30,14 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 getAllStandIns:
 SELECT * FROM StandIn;
 
+getStandInsOfDay:
+SELECT * FROM StandIn WHERE day IS ?;
+
 CREATE TABLE MOTD (
-    id      TEXT    AS UUID     NOT NULL    PRIMARY KEY,
-    day     TEXT    AS Time     NOT NULL,
-    type    INTEGER AS Byte     NOT NULL,
-    message TEXT    AS String   NOT NULL
+    id      TEXT    AS UUID         NOT NULL    PRIMARY KEY,
+    day     TEXT    AS Time.Day     NOT NULL,
+    type    TEXT    AS MOTDTypes    NOT NULL,
+    message TEXT    AS String       NOT NULL
 );
 
 addMOTD:
@@ -42,6 +46,9 @@ VALUES (?, ?, ?, ?);
 
 getAllMOTD:
 SELECT * FROM MOTD;
+
+getMOTDsOfDay:
+SELECT * FROM MOTD WHERE day IS ?;
 
 CREATE TABLE CalendarEvent (
     id                  TEXT    AS UUID     NOT NULL,
@@ -61,9 +68,15 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 getAllCalendarEvent:
 SELECT * FROM CalendarEvent;
 
+getCalendarEvents: --attention! may return multiple because of recurring
+SELECT * FROM CalendarEvent WHERE id IS ?;
+
+getCalendarEventsBetween:
+SELECT * FROM CalendarEvent WHERE (start OR end) BETWEEN :start AND :end OR (start <= :start AND end >= :end);
+
 CREATE TABLE LastUpdate (
     category    TEXT AS LastUpdateTypes NOT NULL    PRIMARY KEY,
-    lastUpdate  TEXT AS Time            NOT NULL    DEFAULT "DT0"
+    lastUpdate  TEXT AS Time.Timestamp  NOT NULL    DEFAULT "DT0"
 );
 INSERT INTO LastUpdate(category)
 VALUES("TIMETABLE"), ("ROOM"), ("TEACHERS"), ("MENU"), ("STAND_IN"), ("CALENDAR");
@@ -98,16 +111,16 @@ getAllLesson:
 SELECT * FROM Lesson;
 
 CREATE TABLE Menu (
-    id          TEXT AS UUID    NOT NULL    PRIMARY KEY,
-    day         TEXT AS Time    NOT NULL,
-    default     TEXT AS String  NOT NULL,
+    id          TEXT AS UUID        NOT NULL    PRIMARY KEY,
+    day         TEXT AS Time.Day    NOT NULL,
+    "default"   TEXT AS String      NOT NULL,
     vegetarian  TEXT AS String,
     dessert     TEXT AS String,
     evening     TEXT AS String
 );
 
 addMenu:
-INSERT INTO Menu(id, day, default, vegetarian, dessert, evening)
+INSERT INTO Menu(id, day, "default", vegetarian, dessert, evening)
 VALUES(?, ?, ?, ?, ?, ?);
 
 getAllMenu:

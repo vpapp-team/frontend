@@ -1,19 +1,19 @@
 package com.molikuner.vpapp.data.types
 
 import com.molikuner.vpapp.data.local.StandIn
+import com.molikuner.vpapp.data.remote.types.StandInResponse
 import com.molikuner.vpapp.types.ClazzDiscriminator
 import com.molikuner.vpapp.types.LessonDiscriminator
 import com.molikuner.vpapp.types.Time
 import com.molikuner.vpapp.types.UUID
 import com.molikuner.vpapp.util.SerialArrayClassDescImpl
 import com.molikuner.vpapp.util.use
-import kotlinx.serialization.CompositeDecoder
 import kotlinx.serialization.Decoder
-import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.Serializer
+import kotlinx.serialization.internal.IntDescriptor
 
 @Serializer(forClass = StandIn::class)
 object StandInSerializer : KSerializer<StandIn> {
@@ -21,7 +21,8 @@ object StandInSerializer : KSerializer<StandIn> {
     override val descriptor: SerialDescriptor = object : SerialArrayClassDescImpl("StandIn") {
         init {
             addElement(StandIn::id, 0, UUID.descriptor)
-            addElement(StandIn::day, 3, Time.descriptor)
+            addElement("remoteType", 1, IntDescriptor)
+            addElement(StandIn::day, 3, Time.Day.descriptor)
             addElement(StandIn::message, 4)
             addElement(StandIn::teacher, 5)
             addElement(StandIn::subject, 6)
@@ -35,35 +36,39 @@ object StandInSerializer : KSerializer<StandIn> {
     }
 
     override fun deserialize(decoder: Decoder): StandIn {
-        inline fun CompositeDecoder.decodeStringElement(index: Int) =
-            this.decodeStringElement(descriptor.getElementDescriptor(index), index)
-
-        inline fun CompositeDecoder.decodeBooleanElement(index: Int) =
-            this.decodeBooleanElement(descriptor.getElementDescriptor(index), index)
-
-        inline fun <T> CompositeDecoder.decodeSerializableElement(
-            index: Int,
-            deserializationStrategy: DeserializationStrategy<T>
-        ) = this.decodeSerializableElement(descriptor.getElementDescriptor(index), index, deserializationStrategy)
-
         return decoder.use(descriptor) {
             StandIn.Impl(
-                id = decodeSerializableElement(0, UUID.serializer()),
-                day = decodeSerializableElement(3, Time.serializer()),
-                message = decodeStringElement(4),
-                teacher = decodeStringElement(5),
-                subject = decodeStringElement(6),
-                clazz = decodeSerializableElement(7, ClazzDiscriminator.serializer()),
-                lesson = decodeSerializableElement(8, LessonDiscriminator.serializer()),
-                room = decodeStringElement(9),
-                origTeacher = decodeStringElement(10),
-                origSubject = decodeStringElement(11),
+                id = decodeSerializableElement(0, UUID.serializer()).also {
+                    if (decodeIntElement(1) != 0) throw IllegalArgumentException("trying to parse a motd as standIn")
+                },
+                day = decodeSerializableElement(3, Time.Day.serializer()),
+                message = decodeNullableStringElement(4),
+                teacher = decodeNullableStringElement(5),
+                subject = decodeNullableStringElement(6),
+                clazz = decodeNullableSerializableElement(7, ClazzDiscriminator.serializer()),
+                lesson = decodeNullableSerializableElement(8, LessonDiscriminator.serializer()),
+                room = decodeNullableStringElement(9),
+                origTeacher = decodeNullableStringElement(10),
+                origSubject = decodeNullableStringElement(11),
                 isEliminated = decodeBooleanElement(12)
             )
         }
     }
 
     override fun serialize(encoder: Encoder, obj: StandIn) {
-        throw UnsupportedOperationException("can not serialize ${descriptor.name}")
+        return encoder.use(descriptor) {
+            encodeSerializableElement(0, UUID.serializer(), obj.id)
+            encodeIntElement(1, StandInResponse.STAND_IN)
+            encodeSerializableElement(3, Time.Day.serializer(), obj.day)
+            encodeNullableStringElement(4, obj.message)
+            encodeNullableStringElement(5, obj.teacher)
+            encodeNullableStringElement(6, obj.subject)
+            encodeNullableSerializableElement(7, obj.clazz, ClazzDiscriminator.serializer())
+            encodeNullableSerializableElement(8, obj.lesson, LessonDiscriminator.serializer())
+            encodeNullableStringElement(9, obj.room)
+            encodeNullableStringElement(10, obj.origTeacher)
+            encodeNullableStringElement(11, obj.origSubject)
+            encodeBooleanElement(12, obj.isEliminated)
+        }
     }
 }

@@ -1,9 +1,7 @@
 package com.molikuner.vpapp.data.remote.types
 
-import com.molikuner.vpapp.platform.Platform
 import com.molikuner.vpapp.types.Range
 import com.molikuner.vpapp.types.Time
-import io.ktor.client.features.UserAgent
 import io.ktor.http.HttpMethod
 import kotlinx.serialization.json.Json
 
@@ -14,9 +12,6 @@ sealed class EndpointRequest(
     val header: Map<String, String>
 ) {
     val url: String = "https://api.nigb.app/v1.0.0/$endpointName"
-    val userAgent = UserAgent("completely-random-string")
-    val version = Platform.VERSION
-    val platform = Platform.PLATFORM
 
     abstract class CommonRequest(
         endpointName: String,
@@ -25,7 +20,7 @@ sealed class EndpointRequest(
         method: HttpMethod = HttpMethod.Post,
         body: String = Json.stringify(DataStatus.serializer(), status),
         vararg header: Pair<String, String>
-    ): EndpointRequest(
+    ) : EndpointRequest(
         endpointName = endpointName,
         method = method,
         body = body,
@@ -39,15 +34,13 @@ sealed class EndpointRequest(
         val requestTime: Time,
         val range: Range,
         val status: DataStatus
-    ): CommonRequest(
+    ) : CommonRequest(
         endpointName = "stand-ins",
         requestTime = requestTime,
         status = status,
         header = *arrayOf("range" to range.toString())
     )
-
 }
-
 
 sealed class ResponseCode(val code: Int) {
     companion object {
@@ -64,16 +57,16 @@ sealed class ResponseCode(val code: Int) {
         }
     }
 }
-sealed class DefaultResponseCodes(code: Int): ResponseCode(code) {
-    object Okay: DefaultResponseCodes(200)
-    object Moved: DefaultResponseCodes(301)
-    object TooLarge: DefaultResponseCodes(413)
-    object Error: DefaultResponseCodes(400)
-    object VersionToLow: DefaultResponseCodes(424)
-    object InternalServerError: DefaultResponseCodes(500)
-    object ProxyError: DefaultResponseCodes(502)
-    class UnknownResponseCode(code: Int): DefaultResponseCodes(code)
+sealed class DefaultResponseCodes(code: Int) : ResponseCode(code) {
+    object Okay : DefaultResponseCodes(200)
+    object Moved : DefaultResponseCodes(301)
+    object TooLarge : DefaultResponseCodes(413)
+    object Error : DefaultResponseCodes(400)
+    object VersionToLow : DefaultResponseCodes(424)
+    object InternalServerError : DefaultResponseCodes(500)
+    object ProxyError : DefaultResponseCodes(502)
+    class UnknownResponseCode(code: Int) : DefaultResponseCodes(code)
 }
-sealed class CommonResponseCodes(code: Int): DefaultResponseCodes(code) {
-    object NothingNew: CommonResponseCodes(304)
+sealed class CommonResponseCodes(code: Int) : DefaultResponseCodes(code) {
+    object NothingNew : CommonResponseCodes(304)
 }

@@ -7,10 +7,7 @@ import kotlinx.serialization.StructureKind
 import kotlinx.serialization.elementDescriptors
 import kotlinx.serialization.internal.BooleanDescriptor
 import kotlinx.serialization.internal.StringDescriptor
-import kotlinx.serialization.withName
-import kotlin.jvm.JvmOverloads
 import kotlin.reflect.KProperty1
-
 
 abstract class SerialArrayClassDescImpl(
     override val name: String,
@@ -24,19 +21,30 @@ abstract class SerialArrayClassDescImpl(
 
     private val classAnnotations: List<Annotation> = classAnnotations.toList()
 
-    fun addElement(property: KProperty1<*, *>, listIndex: Int, descriptor: SerialDescriptor, isOptional: Boolean = false) {
-        _items[property.name] = listIndex to (descriptor.nullable(property.returnType.isMarkedNullable) to isOptional)
+    fun addElement(name: String, listIndex: Int, descriptor: SerialDescriptor, isNullable: Boolean = false, isOptional: Boolean = false) {
+        _items[name] = listIndex to (descriptor.nullable(isNullable) to isOptional)
     }
 
-    fun addElement(property: KProperty1<*, String?>, listIndex: Int, isOptional: Boolean = false) {
-        this.addElement(property, listIndex, StringDescriptor.of(property), isOptional)
+    fun addElement(
+        property: KProperty1<*, *>,
+        listIndex: Int,
+        descriptor: SerialDescriptor,
+        isOptional: Boolean = false
+    ) {
+        this.addElement(property.name, listIndex, descriptor, property.returnType.isMarkedNullable, isOptional)
     }
 
-    fun addElement(property: KProperty1<*, Boolean?>, listIndex: Int, isOptional: Boolean = false) {
-        this.addElement(property, listIndex, BooleanDescriptor.of(property), isOptional)
+    inline fun <reified T> addElement(property: KProperty1<*, T>, listIndex: Int, isOptional: Boolean = false) {
+        @Suppress("UNCHECKED_CAST") val descriptor: SerialDescriptor = when (T::class) {
+            String::class -> StringDescriptor.of(property as KProperty1<*, String>)
+            Boolean::class -> BooleanDescriptor.of(property as KProperty1<*, Boolean>)
+            else -> throw IllegalArgumentException("unknown type ${T::class.simpleName} for element; only string and boolean are allowed")
+        }
+        this.addElement(property, listIndex, descriptor, isOptional)
     }
 
-    private fun getElementOfIndex(index: Int) = indexedItems.getOrNull(0) ?: throw IllegalArgumentException("unknown index $index in array")
+    private fun getElementOfIndex(index: Int) =
+        indexedItems[index] ?: throw IllegalArgumentException("unknown index $index in array")
 
     private fun isValidIndex(index: Int): Boolean = items.any { it.value.first == index }
 
@@ -57,7 +65,6 @@ abstract class SerialArrayClassDescImpl(
         if (!isValidIndex(index)) return CompositeDecoder.UNKNOWN_NAME
         return index
     }
-
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

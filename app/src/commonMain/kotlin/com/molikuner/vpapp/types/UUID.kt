@@ -23,7 +23,7 @@ data class UUID(
     }
 
     @Serializer(forClass = UUID::class)
-    companion object: KSerializer<UUID> {
+    companion object : KSerializer<UUID> {
         override val descriptor: SerialDescriptor = StringDescriptor.withName("UUID")
 
         override fun deserialize(decoder: Decoder): UUID {
@@ -35,7 +35,7 @@ data class UUID(
         }
     }
 
-    object Adapter: ColumnAdapter<UUID, String> {
+    object Adapter : ColumnAdapter<UUID, String> {
         override fun decode(databaseValue: String): UUID {
             return UUID(id = databaseValue)
         }

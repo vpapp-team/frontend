@@ -31,7 +31,7 @@ data class Version(
     }
 
     @Serializer(forClass = Version::class)
-    companion object: KSerializer<Version> {
+    companion object : KSerializer<Version> {
         override val descriptor: SerialDescriptor = StringDescriptor.withName("Version")
 
         override fun deserialize(decoder: Decoder): Version {

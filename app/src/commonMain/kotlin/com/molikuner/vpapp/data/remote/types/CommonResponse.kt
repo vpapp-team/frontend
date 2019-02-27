@@ -1,7 +1,9 @@
 package com.molikuner.vpapp.data.remote.types
 
-import com.molikuner.vpapp.types.UUID
+import com.molikuner.vpapp.types.Time
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DataStatus(val has: List<UUID>)
+abstract class CommonResponse(
+    open val requestTime: Time
+)
