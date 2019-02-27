@@ -1,0 +1,1 @@
+{"packageName":"com.molikuner.vpapp.data.local","sourceSets":[["src/commonMain/sqldelight"]],"outputDirectory":"build/sqldelight","className":"Database"}

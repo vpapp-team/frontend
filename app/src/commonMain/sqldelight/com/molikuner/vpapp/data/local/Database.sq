@@ -1,0 +1,145 @@
+import com.molikuner.vpapp.data.types.LastUpdateTypes;
+import com.molikuner.vpapp.data.types.LessonRegularity;
+import com.molikuner.vpapp.data.types.TimetableTypes;
+import com.molikuner.vpapp.types.ClazzDiscriminator;
+import com.molikuner.vpapp.types.LessonDiscriminator;
+import com.molikuner.vpapp.types.Time.WEEKDAYS;
+import com.molikuner.vpapp.types.Time;
+import com.molikuner.vpapp.types.UUID;
+import kotlin.collections.List;
+
+CREATE TABLE StandIn (
+    id              TEXT    AS UUID                 NOT NULL    PRIMARY KEY,
+    day             TEXT    AS Time                 NOT NULL,
+    message         TEXT    AS String,
+    teacher         TEXT    AS String,
+    subject         TEXT    AS String,
+    clazz           TEXT    AS ClazzDiscriminator,
+    lesson          TEXT    AS LessonDiscriminator,
+    room            TEXT    AS String,
+    origTeacher     TEXT    AS String,
+    origSubject     TEXT    AS String,
+    isEliminated    INTEGER AS Boolean              NOT NULL
+);
+
+addStandIn:
+INSERT INTO StandIn(id, day, message, teacher, subject, clazz, lesson, room, origTeacher, origSubject, isEliminated)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getAllStandIns:
+SELECT * FROM StandIn;
+
+CREATE TABLE MOTD (
+    id      TEXT    AS UUID     NOT NULL    PRIMARY KEY,
+    day     TEXT    AS Time     NOT NULL,
+    type    INTEGER AS Byte     NOT NULL,
+    message TEXT    AS String   NOT NULL
+);
+
+addMOTD:
+INSERT INTO MOTD(id, day, type, message)
+VALUES (?, ?, ?, ?);
+
+getAllMOTD:
+SELECT * FROM MOTD;
+
+CREATE TABLE CalendarEvent (
+    id                  TEXT    AS UUID     NOT NULL,
+    start               TEXT    AS Time     NOT NULL,
+    end                 TEXT    AS Time     NOT NULL,
+    summary             TEXT    AS String   NOT NULL,
+    description         TEXT    AS String,
+    location            TEXT    AS String,
+    isRecurring         INTEGER AS Boolean  NOT NULL,
+    humanRecurrenceRule TEXT    AS String
+);
+
+addCalendarEvent:
+INSERT INTO CalendarEvent(id, start, end, summary, description, location, isRecurring, humanRecurrenceRule)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+getAllCalendarEvent:
+SELECT * FROM CalendarEvent;
+
+CREATE TABLE LastUpdate (
+    category    TEXT AS LastUpdateTypes NOT NULL    PRIMARY KEY,
+    lastUpdate  TEXT AS Time            NOT NULL    DEFAULT "DT0"
+);
+INSERT INTO LastUpdate(category)
+VALUES("TIMETABLE"), ("ROOM"), ("TEACHERS"), ("MENU"), ("STAND_IN"), ("CALENDAR");
+
+updateLastUpdate:
+UPDATE LastUpdate
+SET lastUpdate = ?
+WHERE category = ?;
+
+resetLastUpdate:
+UPDATE LastUpdate
+SET lastUpdate = "DT0"
+WHERE category = ?;
+
+CREATE TABLE Lesson (
+    id          TEXT    AS UUID                 NOT NULL,
+    day         TEXT    AS WEEKDAYS             NOT NULL,
+    lesson      TEXT    AS LessonDiscriminator  NOT NULL,
+    room        TEXT    AS String,
+    teacher     TEXT    AS String               NOT NULL,
+    subject     TEXT    AS String               NOT NULL,
+    clazz       TEXT    AS ClazzDiscriminator   NOT NULL,
+    length      INTEGER AS Int                  NOT NULL,
+    regularity  TEXT    AS LessonRegularity     NOT NULL
+);
+
+addLesson:
+INSERT INTO Lesson(id, day, lesson, room, teacher, subject, clazz, length, regularity)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getAllLesson:
+SELECT * FROM Lesson;
+
+CREATE TABLE Menu (
+    id          TEXT AS UUID    NOT NULL    PRIMARY KEY,
+    day         TEXT AS Time    NOT NULL,
+    default     TEXT AS String  NOT NULL,
+    vegetarian  TEXT AS String,
+    dessert     TEXT AS String,
+    evening     TEXT AS String
+);
+
+addMenu:
+INSERT INTO Menu(id, day, default, vegetarian, dessert, evening)
+VALUES(?, ?, ?, ?, ?, ?);
+
+getAllMenu:
+SELECT * FROM Menu;
+
+CREATE TABLE Teacher (
+    id          TEXT    AS UUID         NOT NULL    PRIMARY KEY,
+    leftSchool  INTEGER AS Boolean      NOT NULL,
+    shorthand   TEXT    AS String       NOT NULL,
+    name        TEXT    AS String       NOT NULL,
+    subjects    TEXT    AS List<String> NOT NULL,
+    mail        TEXT    AS UUID         NOT NULL,
+    comments    TEXT    AS List<String> NOT NULL,
+    timetable   TEXT    AS List<UUID>   NOT NULL
+);
+
+addTeacher:
+INSERT INTO Teacher(id, leftSchool, shorthand, name, subjects, mail, comments, timetable)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+getAllTeacher:
+SELECT * FROM Teacher;
+
+
+CREATE TABLE Timetable (
+    id          TEXT AS UUID            NOT NULL    PRIMARY KEY,
+    type        TEXT AS TimetableTypes  NOT NULL,
+    master      TEXT AS String          NOT NULL,
+    activation  TEXT AS Time            NOT NULL,
+    lessons     TEXT AS List<UUID>      NOT NULL
+);
+
+addTimetable:
+INSERT INTO Timetable(id, type, master, activation, lessons)
+VALUES (?, ?, ?, ?, ?);

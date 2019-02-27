@@ -1,9 +1,0 @@
-[submodule "app/src/main"]
-	path = app/src/main
-	url = git@github.com:vpapp-team/frontend-app.git
-[submodule "app/src/commonMain/kotlin/com/molikuner/util"]
-	path = app/src/commonMain/kotlin/com/molikuner/util
-	url = git@github.com:vpapp-team/frontend-util.git
-[submodule "app/src/commonMain/kotlin/com/molikuner/vpapp"]
-	path = app/src/commonMain/kotlin/com/molikuner/vpapp
-	url = git@github.com:vpapp-team/frontend-data.git

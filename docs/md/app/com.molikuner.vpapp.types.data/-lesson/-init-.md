@@ -1,5 +1,0 @@
-[app](../../index.md) / [com.molikuner.vpapp.types.data](../index.md) / [Lesson](index.md) / [&lt;init&gt;](./-init-.md)
-
-# &lt;init&gt;
-
-`Lesson(id: `[`UUID`](../../com.molikuner.types/-u-u-i-d/index.md)`, weekday: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, lesson: `[`LessonDiscriminator`](../-lesson-discriminator/index.md)`, room: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null, teacher: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, subject: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, clazz: `[`ClazzDiscriminator`](../-clazz-discriminator/index.md)`, length: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`, regularity: `[`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html)`)`
