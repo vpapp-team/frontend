@@ -1,5 +1,7 @@
 package com.molikuner.vpapp.data.util
 
+import com.molikuner.vpapp.data.util.APIResult.Error.AbstractAPIError.APIError
+import com.molikuner.vpapp.data.util.APIResult.Error.AbstractAPIError.NothingNew
 import com.molikuner.vpapp.util.NothingNew
 import com.molikuner.vpapp.util.Version2Low
 import io.ktor.client.call.receive
@@ -30,7 +32,6 @@ fun <T : Any> Result<T>.isErrored(): Boolean {
 sealed class APIResult<out T : Any> {
 
     data class Success<out T : Any>(val data: T) : APIResult<T>()
-    object NothingNew : APIResult<Nothing>()
     sealed class Error : APIResult<Nothing>() {
         @Serializable
         data class BackendError(val error: String) : Error()
@@ -42,7 +43,10 @@ sealed class APIResult<out T : Any> {
         /**
          * invalid response from api
          * */
-        data class APIError(val responseCode: Int) : Error()
+        sealed class AbstractAPIError(open val responseCode: Int) : Error() {
+            object NothingNew : AbstractAPIError(304)
+            data class APIError(override val responseCode: Int) : AbstractAPIError(responseCode)
+        }
         data class LocalError(val message: String, val exception: Exception) : Error()
     }
 
@@ -50,14 +54,14 @@ sealed class APIResult<out T : Any> {
         suspend inline fun <reified T : Any> ofHttpResponse(response: HttpResponse, allowNothingNew: Boolean = false): APIResult<T> {
             return when (val code = response.status) {
                 HttpStatusCode.OK -> Success(response.receive())
-                HttpStatusCode.NothingNew -> if (allowNothingNew) NothingNew else Error.APIError(code.value)
+                HttpStatusCode.NothingNew -> if (allowNothingNew) NothingNew else APIError(code.value)
                 HttpStatusCode.MovedPermanently -> Error.Moved
                 HttpStatusCode.PayloadTooLarge -> Error.TooLarge
                 HttpStatusCode.BadRequest -> response.receive<Error.BackendError>()
                 HttpStatusCode.Version2Low -> Error.Version2Low
                 HttpStatusCode.InternalServerError -> Error.ServerError
                 HttpStatusCode.BadGateway -> Error.ProxyError
-                else -> Error.APIError(code.value)
+                else -> APIError(code.value)
             }
         }
     }

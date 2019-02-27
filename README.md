@@ -14,8 +14,8 @@ show up for class.
 
 ## Are there docs?
 
-The documentation can be found in the docs folder. (html & md)  
-I hope it's up-to-date.
+The documentation will be found in the docs folder. (html & md)  
+Currently they aren't available.
 
 
 ## When is it finished?
