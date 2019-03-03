@@ -21,7 +21,10 @@ import kotlinx.serialization.internal.ShortSerializer
 import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.internal.UnitSerializer
 
-class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private val orig: CompositeDecoder) :
+class SimpleCompositeDecoder(
+    private val descriptor: SerialDescriptor,
+    private val orig: CompositeDecoder
+) :
     CompositeDecoder by orig {
 
     override fun decodeBooleanElement(desc: SerialDescriptor, index: Int) =
@@ -29,7 +32,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeBooleanElement(index: Int) = decodeBooleanElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableBooleanElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableBooleanElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, BooleanSerializer, desc)
 
     override fun decodeByteElement(desc: SerialDescriptor, index: Int) =
@@ -37,7 +43,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeByteElement(index: Int) = decodeByteElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableByteElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableByteElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, ByteSerializer, desc)
 
     override fun decodeCharElement(desc: SerialDescriptor, index: Int) =
@@ -45,7 +54,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeCharElement(index: Int) = decodeCharElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableCharElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableCharElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, CharSerializer, desc)
 
     override fun decodeDoubleElement(desc: SerialDescriptor, index: Int) =
@@ -53,7 +65,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeDoubleElement(index: Int) = decodeDoubleElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableDoubleElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableDoubleElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, DoubleSerializer, desc)
 
     override fun decodeFloatElement(desc: SerialDescriptor, index: Int) =
@@ -61,7 +76,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeFloatElement(index: Int) = decodeFloatElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableFloatElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableFloatElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, FloatSerializer, desc)
 
     override fun decodeIntElement(desc: SerialDescriptor, index: Int) =
@@ -69,7 +87,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeIntElement(index: Int) = decodeIntElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableIntElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableIntElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, IntSerializer, desc)
 
     override fun decodeLongElement(desc: SerialDescriptor, index: Int) =
@@ -77,7 +98,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeLongElement(index: Int) = decodeLongElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableLongElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableLongElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, LongSerializer, desc)
 
     override fun <T : Any> decodeNullableSerializableElement(
@@ -86,7 +110,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
         deserializer: DeserializationStrategy<T?>
     ) = orig.decodeNullableSerializableElement(desc, skipToElement(index), deserializer)
 
-    fun <T : Any> decodeNullableSerializableElement(index: Int, deserializer: DeserializationStrategy<T?>) =
+    fun <T : Any> decodeNullableSerializableElement(
+        index: Int,
+        deserializer: DeserializationStrategy<T?>
+    ) =
         decodeNullableSerializableElement(descriptor.getElementDescriptor(index), index, deserializer)
 
     fun <T : Any> decodeNullableSerializableElement(
@@ -109,7 +136,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeShortElement(index: Int) = decodeShortElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableShortElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableShortElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, ShortSerializer, desc)
 
     override fun decodeStringElement(desc: SerialDescriptor, index: Int) =
@@ -117,7 +147,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeStringElement(index: Int) = decodeStringElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableStringElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableStringElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, StringSerializer, desc)
 
     override fun decodeUnitElement(desc: SerialDescriptor, index: Int) =
@@ -125,7 +158,10 @@ class SimpleCompositeDecoder(private val descriptor: SerialDescriptor, private v
 
     fun decodeUnitElement(index: Int) = decodeUnitElement(descriptor.getElementDescriptor(index), index)
 
-    fun decodeNullableUnitElement(index: Int, desc: SerialDescriptor = descriptor.getElementDescriptor(index)) =
+    fun decodeNullableUnitElement(
+        index: Int,
+        desc: SerialDescriptor = descriptor.getElementDescriptor(index)
+    ) =
         decodeNullableSerializableElement(index, UnitSerializer, desc)
 
     override fun <T : Any> updateNullableSerializableElement(

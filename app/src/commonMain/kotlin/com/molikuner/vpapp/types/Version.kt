@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.internal.StringDescriptor
 import kotlinx.serialization.withName
 
-@Serializable
+@Serializable(with = Version.Companion::class)
 data class Version(
     val major: Int,
     val minor: Int,
@@ -33,6 +33,8 @@ data class Version(
     @Serializer(forClass = Version::class)
     companion object : KSerializer<Version> {
         private const val RADIX = 16
+
+        fun serializer(): KSerializer<Version> = Version
 
         override val descriptor: SerialDescriptor = StringDescriptor.withName("Version")
 

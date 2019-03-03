@@ -1,5 +1,6 @@
 package com.molikuner.vpapp.types
 
+import com.molikuner.vpapp.platform.Platform
 import com.squareup.sqldelight.ColumnAdapter
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
@@ -10,27 +11,30 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.internal.StringDescriptor
 import kotlinx.serialization.withName
 
-@Serializable
+@Serializable(with = Time.Companion::class)
 sealed class Time(
     open val unix: Long
 ) {
     abstract fun addDays(number: Long = 1): Time
 
-    @Serializable
+    @Serializable(with = Day.Companion::class)
     data class Day(
-        override val unix: Long
-    ) : Time(unix) {
+        val day: Long
+    ) : Time(day * DAY_IN_UNIX) {
+
         override fun toString(): String {
-            return "D${unix / 1000 * 60 * 60 * 24}"
+            return "D$day"
         }
 
         override fun addDays(number: Long): Time.Day {
-            return this.copy(unix = this.unix + (DAY_IN_UNIX * number))
+            return this.copy(day = this.day + number)
         }
 
         @Serializer(forClass = Day::class)
         companion object : KSerializer<Day> {
             override val descriptor: SerialDescriptor = StringDescriptor.withName("Time.Day")
+
+            fun serializer(): KSerializer<Day> = Day
 
             override fun deserialize(decoder: Decoder): Day {
                 return Time.decode(decoder.decodeString())
@@ -54,7 +58,7 @@ sealed class Time(
         }
     }
 
-    @Serializable
+    @Serializable(with = Timestamp.Companion::class)
     data class Timestamp(
         override val unix: Long
     ) : Time(unix) {
@@ -69,6 +73,8 @@ sealed class Time(
         @Serializer(forClass = Timestamp::class)
         companion object : KSerializer<Timestamp> {
             override val descriptor: SerialDescriptor = StringDescriptor.withName("Time.Timestamp")
+
+            fun serializer(): KSerializer<Timestamp> = Timestamp
 
             override fun deserialize(decoder: Decoder): Timestamp {
                 return Time.decode(decoder.decodeString())
@@ -101,6 +107,8 @@ sealed class Time(
             return if (input.contains('T')) Timestamp(input.drop(2).toLong()) else Day(input.drop(1).toLong())
         }
 
+        fun serializer(): KSerializer<Time> = Time
+
         private inline fun <reified T : Time> decode(input: String) = Time(input) as T
 
         override val descriptor: SerialDescriptor = StringDescriptor.withName("Time")
@@ -109,8 +117,16 @@ sealed class Time(
             return Time.decode(decoder.decodeString())
         }
 
+        override fun patch(decoder: Decoder, old: Time): Time {
+            return deserialize(decoder)
+        }
+
         override fun serialize(encoder: Encoder, obj: Time) {
             return encoder.encodeString(obj.toString())
+        }
+
+        fun now(): Timestamp {
+            return Time.Timestamp(Platform.currentTimeMillis)
         }
     }
 

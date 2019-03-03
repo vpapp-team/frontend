@@ -13,6 +13,6 @@ data class UpdateResponse(
     @Serializable(with = LastUpdateSerializer::class) val lastUpdates: List<LastUpdate>,
     val recommendedVersion: Version,
     val minVersion: Version,
-    val recommendedDays: Range,
+    val recommendedDays: Range.Day,
     val message: String?
-) : CommonResponse(requestTime)
+) : CommonResponse()

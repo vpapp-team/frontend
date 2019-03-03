@@ -33,6 +33,9 @@ SELECT * FROM StandIn;
 getStandInsOfDay:
 SELECT * FROM StandIn WHERE day IS ?;
 
+deleteStandIn:
+DELETE FROM StandIn WHERE id IS ?;
+
 CREATE TABLE MOTD (
     id      TEXT    AS UUID         NOT NULL    PRIMARY KEY,
     day     TEXT    AS Time.Day     NOT NULL,
@@ -49,6 +52,9 @@ SELECT * FROM MOTD;
 
 getMOTDsOfDay:
 SELECT * FROM MOTD WHERE day IS ?;
+
+deleteMOTD:
+DELETE FROM MOTD WHERE id IS ?;
 
 CREATE TABLE CalendarEvent (
     id                  TEXT    AS UUID     NOT NULL,
@@ -90,6 +96,9 @@ resetLastUpdate:
 UPDATE LastUpdate
 SET lastUpdate = "DT0"
 WHERE category = ?;
+
+getLastUpdate:
+SELECT lastUpdate FROM LastUpdate WHERE category = ?;
 
 CREATE TABLE Lesson (
     id          TEXT    AS UUID                 NOT NULL,
@@ -156,3 +165,20 @@ CREATE TABLE Timetable (
 addTimetable:
 INSERT INTO Timetable(id, type, master, activation, lessons)
 VALUES (?, ?, ?, ?, ?);
+
+getTimetable:
+SELECT * FROM Timetable WHERE master IS ?;
+
+
+CREATE TABLE LessonRange (
+    discriminator   TEXT AS LessonDiscriminator NOT NULL    PRIMARY KEY,
+    time            TEXT AS String              NOT NULL,
+    CONSTRAINT time_unique UNIQUE(time)
+);
+
+addLessonRange:
+INSERT INTO LessonRange(discriminator, time)
+VALUES (?, ?);
+
+getLessonRange:
+SELECT * FROM LessonRange WHERE discriminator IS ?;

@@ -16,7 +16,7 @@ class MOTDTests {
             MOTD.Impl(
                 id = UUID("uuid@random.de"),
                 type = MOTDTypes.OTHER,
-                day = Time.Day(unix = 0),
+                day = Time.Day(day = 0),
                 message = "Test Message"
             ),
             Json.parse(MOTDSerializer, motdJson),
@@ -28,7 +28,7 @@ class MOTDTests {
                 MOTDSerializer, MOTD.Impl(
                     id = UUID("uuid@random.de"),
                     type = MOTDTypes.OTHER,
-                    day = Time.Day(unix = 0),
+                    day = Time.Day(day = 0),
                     message = "Test Message"
                 )
             ),

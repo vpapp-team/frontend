@@ -35,7 +35,7 @@ class APITests {
             return@let it
         }
         when (url.toString()) {
-            "https://api.nigb.app/api/v1.0.0/stand-in" -> {
+            "https://keeweb.molikuner.com/api/v1.0.0/stand-in.json" -> {
                 val status = Json.parse(DataStatus.serializer(), content.text)
                 if (status.has.size != 1) error("this test is unfinished; please fix it")
                 when (status.has[0]) {

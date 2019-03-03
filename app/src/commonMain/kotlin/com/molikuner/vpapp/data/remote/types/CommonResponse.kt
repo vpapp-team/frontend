@@ -4,6 +4,6 @@ import com.molikuner.vpapp.types.Time
 import kotlinx.serialization.Serializable
 
 @Serializable
-abstract class CommonResponse(
-    open val requestTime: Time
-)
+abstract class CommonResponse {
+    abstract val requestTime: Time
+}

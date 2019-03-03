@@ -6,4 +6,6 @@ import com.molikuner.vpapp.types.Version
 actual object Platform {
     actual val VERSION: Version = Version(BuildConfig.VERSION_NAME)
     actual val PLATFORM: String = "android"
+    actual val currentTimeMillis: Long
+        get() = System.currentTimeMillis()
 }

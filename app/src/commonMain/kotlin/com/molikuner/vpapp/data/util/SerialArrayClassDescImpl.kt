@@ -43,7 +43,11 @@ abstract class SerialArrayClassDescImpl(
         this.addElement(property.name, listIndex, descriptor, property.returnType.isMarkedNullable, isOptional)
     }
 
-    inline fun <reified T> addElement(property: KProperty1<*, T>, listIndex: Int, isOptional: Boolean = false) {
+    inline fun <reified T> addElement(
+        property: KProperty1<*, T>,
+        listIndex: Int,
+        isOptional: Boolean = false
+    ) {
         @Suppress("UNCHECKED_CAST") val descriptor: SerialDescriptor = when (T::class) {
             String::class -> StringDescriptor.of(property as KProperty1<*, String>)
             Boolean::class -> BooleanDescriptor.of(property as KProperty1<*, Boolean>)

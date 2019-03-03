@@ -83,7 +83,7 @@ suspend fun <T : Any> safeApiCall(
     return try {
         call()
     } catch (e: Exception) {
-        if (leftTries > 0) return safeApiCall(
+        if (leftTries > 0 && e !is FatalException) return safeApiCall(
             errorMessage,
             leftTries.dec(),
             call
@@ -91,3 +91,9 @@ suspend fun <T : Any> safeApiCall(
         APIResult.Error.LocalError(errorMessage, e)
     }
 }
+
+class FatalException(
+    result: APIResult.Error,
+    message: String? = if (result is APIResult.Error.BackendError) result.error else null,
+    cause: Throwable? = null
+) : IllegalStateException(message, cause)

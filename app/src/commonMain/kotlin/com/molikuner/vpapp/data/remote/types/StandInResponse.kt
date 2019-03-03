@@ -27,7 +27,7 @@ data class StandInResponse(
     val addStandIn: List<StandIn>,
     val addMOTD: List<MOTD>,
     val remove: List<UUID>
-) : CommonResponse(requestTime) {
+) : CommonResponse() {
     private val add: List<String> by lazy {
         addMOTD.map { Json.plain.stringify(MOTDSerializer, it) } +
                 addStandIn.map { Json.plain.stringify(StandInSerializer, it) }

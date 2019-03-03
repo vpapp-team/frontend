@@ -15,7 +15,7 @@ class StandInTests {
         assertEquals(
             StandIn.Impl(
                 id = UUID("uuid@random.de"),
-                day = Time.Day(unix = 0),
+                day = Time.Day(day = 0),
                 message = null,
                 teacher = null,
                 subject = null,
@@ -34,7 +34,7 @@ class StandInTests {
             Json.stringify(
                 StandInSerializer, StandIn.Impl(
                     id = UUID("uuid@random.de"),
-                    day = Time.Day(unix = 0),
+                    day = Time.Day(day = 0),
                     message = null,
                     teacher = null,
                     subject = null,

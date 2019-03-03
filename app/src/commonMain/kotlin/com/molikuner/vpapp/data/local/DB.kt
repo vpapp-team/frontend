@@ -58,6 +58,9 @@ object DB {
                 typeAdapter = EnumColumnAdapter(),
                 activationAdapter = Time.Adapter,
                 lessonsAdapter = ListAdapter(UUID.serializer())
+            ),
+            LessonRangeAdapter = LessonRange.Adapter(
+                discriminatorAdapter = LessonDiscriminator.Adapter
             )
         )
     }

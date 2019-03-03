@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         try {
             DB.initDB(applicationContext)
+            DB.queries.deleteMOTD(UUID("abd@cd.de"))
             DB.queries.addMOTD(
                 id = UUID("abd@cd.de"),
                 day = Time.Day(0),

@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.internal.StringDescriptor
 import kotlinx.serialization.withName
 
-@Serializable
+@Serializable(with = ClazzDiscriminator.Companion::class)
 data class ClazzDiscriminator(
     val discriminator: String
 ) {
@@ -23,6 +23,8 @@ data class ClazzDiscriminator(
     @Serializer(forClass = ClazzDiscriminator::class)
     companion object : KSerializer<ClazzDiscriminator> {
         override val descriptor: SerialDescriptor = StringDescriptor.withName("ClazzDiscriminator")
+
+        fun serializer(): KSerializer<ClazzDiscriminator> = ClazzDiscriminator
 
         override fun deserialize(decoder: Decoder): ClazzDiscriminator {
             return ClazzDiscriminator(decoder.decodeString())

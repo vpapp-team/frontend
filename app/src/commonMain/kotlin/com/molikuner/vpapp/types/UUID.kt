@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.internal.StringDescriptor
 import kotlinx.serialization.withName
 
-@Serializable
+@Serializable(with = UUID.Companion::class)
 data class UUID(
     val id: String
 ) {
@@ -33,6 +33,8 @@ data class UUID(
         override fun serialize(encoder: Encoder, obj: UUID) {
             encoder.encodeString(obj.toString())
         }
+
+        fun serializer(): KSerializer<UUID> = UUID
     }
 
     object Adapter : ColumnAdapter<UUID, String> {

@@ -21,7 +21,10 @@ import kotlinx.serialization.internal.ShortSerializer
 import kotlinx.serialization.internal.StringSerializer
 import kotlinx.serialization.internal.UnitSerializer
 
-class SimpleCompositeEncoder(private val descriptor: SerialDescriptor, private val orig: CompositeEncoder) :
+class SimpleCompositeEncoder(
+    private val descriptor: SerialDescriptor,
+    private val orig: CompositeEncoder
+) :
     CompositeEncoder by orig {
 
     override fun encodeBooleanElement(desc: SerialDescriptor, index: Int, value: Boolean) =
@@ -124,7 +127,11 @@ class SimpleCompositeEncoder(private val descriptor: SerialDescriptor, private v
         if (it.descriptor.isNullable) it else it.nullable()
     }, value)
 
-    fun <T : Any> encodeNullableSerializableElement(index: Int, value: T?, serializer: SerializationStrategy<T>) =
+    fun <T : Any> encodeNullableSerializableElement(
+        index: Int,
+        value: T?,
+        serializer: SerializationStrategy<T>
+    ) =
         encodeNullableSerializableElement(descriptor.getElementDescriptor(index), index, serializer, value)
 
     fun <T : Any> encodeNullableSerializableElement(
