@@ -6,4 +6,3 @@ import kotlinx.serialization.Serializer
 
 @Serializer(forClass = LessonRange::class)
 object LessonRangeSerializer : KSerializer<LessonRange>
-

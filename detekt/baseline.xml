@@ -1,14 +1,30 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
   <Blacklist timestamp="1551279114426"></Blacklist>
-  <Whitelist timestamp="1551279114426">
+  <Whitelist timestamp="1552847350340">
     <ID>ComplexMethod:Result.kt$APIResult.Companion$suspend inline fun &lt;reified T : Any&gt; ofHttpResponse( response: HttpResponse, allowNothingNew: Boolean = false ): APIResult&lt;T&gt;</ID>
     <ID>ComplexMethod:StandInResponse.kt$StandInResponse.Companion$override fun deserialize(decoder: Decoder): StandInResponse</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer$3</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer$4</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer$5</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer$6</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer$7</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer.&lt;no name provided&gt;$3</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer.&lt;no name provided&gt;$4</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer.&lt;no name provided&gt;$5</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer.&lt;no name provided&gt;$6</ID>
+    <ID>MagicNumber:CalendarEventSerializer.kt$CalendarEventSerializer.&lt;no name provided&gt;$7</ID>
     <ID>MagicNumber:HttpStatusCode.kt$424</ID>
     <ID>MagicNumber:MOTDSerializer.kt$MOTDSerializer$3</ID>
     <ID>MagicNumber:MOTDSerializer.kt$MOTDSerializer$4</ID>
     <ID>MagicNumber:MOTDSerializer.kt$MOTDSerializer.&lt;no name provided&gt;$3</ID>
     <ID>MagicNumber:MOTDSerializer.kt$MOTDSerializer.&lt;no name provided&gt;$4</ID>
+    <ID>MagicNumber:MenuSerializer.kt$MenuSerializer$3</ID>
+    <ID>MagicNumber:MenuSerializer.kt$MenuSerializer$4</ID>
+    <ID>MagicNumber:MenuSerializer.kt$MenuSerializer$5</ID>
+    <ID>MagicNumber:MenuSerializer.kt$MenuSerializer.&lt;no name provided&gt;$3</ID>
+    <ID>MagicNumber:MenuSerializer.kt$MenuSerializer.&lt;no name provided&gt;$4</ID>
+    <ID>MagicNumber:MenuSerializer.kt$MenuSerializer.&lt;no name provided&gt;$5</ID>
     <ID>MagicNumber:Result.kt$APIResult.Error.AbstractAPIError.NothingNew$304</ID>
     <ID>MagicNumber:StandInSerializer.kt$StandInSerializer$10</ID>
     <ID>MagicNumber:StandInSerializer.kt$StandInSerializer$11</ID>
@@ -30,9 +46,16 @@
     <ID>MagicNumber:StandInSerializer.kt$StandInSerializer.&lt;no name provided&gt;$7</ID>
     <ID>MagicNumber:StandInSerializer.kt$StandInSerializer.&lt;no name provided&gt;$8</ID>
     <ID>MagicNumber:StandInSerializer.kt$StandInSerializer.&lt;no name provided&gt;$9</ID>
-    <ID>MagicNumber:Time.kt$Time.Day$1000</ID>
-    <ID>MagicNumber:Time.kt$Time.Day$24</ID>
-    <ID>MagicNumber:Time.kt$Time.Day$60</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer$3</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer$4</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer$5</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer$6</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer$7</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer.&lt;no name provided&gt;$3</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer.&lt;no name provided&gt;$4</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer.&lt;no name provided&gt;$5</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer.&lt;no name provided&gt;$6</ID>
+    <ID>MagicNumber:TeacherSerializer.kt$TeacherSerializer.&lt;no name provided&gt;$7</ID>
     <ID>NestedBlockDepth:StandInResponse.kt$StandInResponse.Companion$override fun deserialize(decoder: Decoder): StandInResponse</ID>
     <ID>TooGenericExceptionCaught:Any.kt$e: Exception</ID>
     <ID>TooGenericExceptionCaught:MainActivity.kt$MainActivity$e: Exception</ID>

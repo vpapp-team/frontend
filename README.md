@@ -5,11 +5,11 @@
 
 ## What's this?
 
-Well, it's not that easy to explain. It is my leisure fun project.
-This app shows me (or any other student or teacher of the NIG) where
-and when I have to go to which lesson, whether there are substitutions
-or I am allowed to continue writing this app because someone does not
-show up for class.
+Well, it's not that easy to explain. It is my leisure project.
+This app shows me (or any other student or teacher of the NIG)
+where and when I have to go to which lesson, whether there are
+substitutions or if I can continue writing this app because
+someone isn't coming for class.
 
 
 ## Are there docs?

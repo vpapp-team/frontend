@@ -63,7 +63,7 @@ interface API {
         reqBody: Any = EmptyContent,
         reqMethod: HttpMethod = HttpMethod.Post,
         requestTime: Time? = Time.now(),
-        crossinline headers: HeadersBuilder.() -> Unit = {}
+        crossinline customHeader: HeadersBuilder.() -> Unit = {}
     ): HttpResponse {
         return this@API.client.call {
             method = reqMethod
@@ -78,7 +78,7 @@ interface API {
                 }
                 this["platform"] = Platform.PLATFORM
                 this["version"] = Platform.VERSION.toString()
-                this.apply(headers)
+                customHeader()
             }
             userAgent("completely-random-string")
             body = reqBody

@@ -23,7 +23,6 @@ import com.molikuner.vpapp.types.UUID
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 
-@Serializable
 sealed class DefaultResponse<T> : CommonResponse() {
     abstract val add: List<T>
     abstract val remove: List<UUID>
@@ -49,7 +48,7 @@ sealed class DefaultResponse<T> : CommonResponse() {
         override val remove: List<UUID>
     ) : DefaultResponse<Teacher>()
 
-    @Serializable
+    @Serializable // TODO fix lessons gets dropped by creating an even more custom response like standIn
     data class TimetableResponse(
         override val requestTime: Time,
         override val add: List<Timetable>,

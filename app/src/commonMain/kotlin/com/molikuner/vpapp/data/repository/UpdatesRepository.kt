@@ -23,25 +23,28 @@ object UpdatesRepository {
     private var minVersion: CacheState<Version>? = null
 
     suspend fun recommendedDays(): Range.Day {
-        return recommendedDays?.takeIf { it.lastUpdate.unix < Platform.currentTimeMillis - 3600000 }?.state ?: request {
-            recommendedDays()
-        }
+        return recommendedDays?.takeIf { it.lastUpdate.unix < Platform.currentTimeMillis - Time.HOUR_IN_UNIX }?.state
+            ?: request {
+                recommendedDays()
+            }
     }
 
     suspend fun minVersion(): Version {
-        return minVersion?.takeIf { it.lastUpdate.unix < Platform.currentTimeMillis - 3600000 }?.state ?: request {
-            minVersion()
-        }
+        return minVersion?.takeIf { it.lastUpdate.unix < Platform.currentTimeMillis - Time.DAY_IN_UNIX }?.state
+            ?: request {
+                minVersion()
+            }
     }
 
     suspend fun lastRemoteUpdate(type: LastUpdateTypes, retry: Boolean = true): Time.Timestamp {
-        return remoteCache[type]?.takeIf { it.lastUpdate.unix < Platform.currentTimeMillis - 300000 }?.state
-            ?: if (!retry) throw FatalException(
-                APIResult.Error.LocalError(
-                    "remote doesn't provide ${type.name}",
-                    IllegalStateException(type.name)
-                )
-            ) else request { lastRemoteUpdate(type, false) }
+        return remoteCache[type]?.takeIf {
+            it.lastUpdate.unix < Platform.currentTimeMillis - Time.FIVE_MIN_IN_UNIX
+        }?.state ?: if (!retry) throw FatalException(
+            APIResult.Error.LocalError(
+                "remote doesn't provide ${type.name}",
+                IllegalStateException(type.name)
+            )
+        ) else request { lastRemoteUpdate(type, false) }
     }
 
     suspend fun lastDBUpdate(type: LastUpdateTypes): Time.Timestamp {

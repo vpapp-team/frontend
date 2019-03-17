@@ -32,12 +32,14 @@ sealed class Time(
 
         @Serializer(forClass = Day::class)
         companion object : KSerializer<Day> {
+            operator fun invoke(input: String): Day {
+                return Day(input.drop(1).toLong())
+            }
+
             override val descriptor: SerialDescriptor = StringDescriptor.withName("Time.Day")
 
-            fun serializer(): KSerializer<Day> = Day
-
             override fun deserialize(decoder: Decoder): Day {
-                return Time.decode(decoder.decodeString())
+                return Time(decoder.decodeString())
             }
 
             override fun patch(decoder: Decoder, old: Day): Day {
@@ -51,7 +53,7 @@ sealed class Time(
 
         object Adapter : ColumnAdapter<Day, String> {
             override fun decode(databaseValue: String): Day {
-                return Time.decode(databaseValue)
+                return Time(databaseValue)
             }
 
             override fun encode(value: Day): String = Time.Adapter.encode(value)
@@ -72,12 +74,14 @@ sealed class Time(
 
         @Serializer(forClass = Timestamp::class)
         companion object : KSerializer<Timestamp> {
+            operator fun invoke(input: String): Timestamp {
+                return Timestamp(input.drop(2).toLong())
+            }
+
             override val descriptor: SerialDescriptor = StringDescriptor.withName("Time.Timestamp")
 
-            fun serializer(): KSerializer<Timestamp> = Timestamp
-
             override fun deserialize(decoder: Decoder): Timestamp {
-                return Time.decode(decoder.decodeString())
+                return Time(decoder.decodeString())
             }
 
             override fun patch(decoder: Decoder, old: Timestamp): Timestamp {
@@ -91,7 +95,7 @@ sealed class Time(
 
         object Adapter : ColumnAdapter<Timestamp, String> {
             override fun decode(databaseValue: String): Timestamp {
-                return Time(input = databaseValue) as Timestamp
+                return Time(input = databaseValue)
             }
 
             override fun encode(value: Timestamp): String = Time.Adapter.encode(value)
@@ -101,20 +105,18 @@ sealed class Time(
     @Serializer(forClass = Time::class)
     companion object : KSerializer<Time> {
         const val DAY_IN_UNIX = 86400000L
+        const val HOUR_IN_UNIX = 3600000L
+        const val FIVE_MIN_IN_UNIX = 300000L
 
-        operator fun invoke(input: String): Time {
+        inline operator fun <reified T : Time> invoke(input: String): T {
             // TODO check format
-            return if (input.contains('T')) Timestamp(input.drop(2).toLong()) else Day(input.drop(1).toLong())
+            return if (input.contains('T')) Timestamp(input.drop(2).toLong()) as T else Day(input.drop(1).toLong()) as T
         }
-
-        fun serializer(): KSerializer<Time> = Time
-
-        private inline fun <reified T : Time> decode(input: String) = Time(input) as T
 
         override val descriptor: SerialDescriptor = StringDescriptor.withName("Time")
 
         override fun deserialize(decoder: Decoder): Time {
-            return Time.decode(decoder.decodeString())
+            return Time(decoder.decodeString())
         }
 
         override fun patch(decoder: Decoder, old: Time): Time {
@@ -132,7 +134,7 @@ sealed class Time(
 
     object Adapter : ColumnAdapter<Time, String> {
         override fun decode(databaseValue: String): Time {
-            return Time.decode(databaseValue)
+            return Time(databaseValue)
         }
 
         override fun encode(value: Time): String {
@@ -143,4 +145,20 @@ sealed class Time(
     enum class DAYS { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
 
     enum class WEEKDAYS { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY }
+}
+
+operator fun <T : Time> T.minus(amount: T): T {
+    return when (this) {
+        is Time.Day -> this.copy(day = this.day - (amount as Time.Day).day) as T
+        is Time.Timestamp -> this.copy(unix = this.unix - (amount as Time.Timestamp).unix) as T
+        else -> TODO("missing branch for time while subtracting one from an other")
+    }
+}
+
+operator fun <T : Time> T.plus(amount: T): T {
+    return when (this) {
+        is Time.Day -> this.copy(day = this.day + (amount as Time.Day).day) as T
+        is Time.Timestamp -> this.copy(unix = this.unix + (amount as Time.Timestamp).unix) as T
+        else -> TODO("missing branch for time while adding one to an other")
+    }
 }

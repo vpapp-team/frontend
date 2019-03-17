@@ -3,6 +3,7 @@ package com.molikuner.vpapp.util
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Encoder
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.decodeNullable
@@ -45,3 +46,5 @@ fun <T : Any> SerializationStrategy<T>.nullable() = object : SerializationStrate
         return "Nullable${this@nullable}"
     }
 }
+
+fun <T> KSerializer<T>.serializer() = this
