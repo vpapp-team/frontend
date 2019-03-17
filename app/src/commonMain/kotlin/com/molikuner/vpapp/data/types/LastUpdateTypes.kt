@@ -4,6 +4,7 @@ import com.molikuner.vpapp.data.local.LastUpdate
 import com.molikuner.vpapp.data.util.EnumNumberSerializer
 import com.molikuner.vpapp.types.Time
 import com.molikuner.vpapp.util.SerialArrayClassDescImpl
+import com.molikuner.vpapp.util.serializer
 import com.molikuner.vpapp.util.use
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder

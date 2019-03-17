@@ -147,6 +147,7 @@ sealed class Time(
     enum class WEEKDAYS { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY }
 }
 
+@Suppress("UNCHECKED_CAST")
 operator fun <T : Time> T.minus(amount: T): T {
     return when (this) {
         is Time.Day -> this.copy(day = this.day - (amount as Time.Day).day) as T
@@ -155,6 +156,7 @@ operator fun <T : Time> T.minus(amount: T): T {
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 operator fun <T : Time> T.plus(amount: T): T {
     return when (this) {
         is Time.Day -> this.copy(day = this.day + (amount as Time.Day).day) as T
