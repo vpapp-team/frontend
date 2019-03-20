@@ -1,5 +1,6 @@
 package com.molikuner.vpapp.types
 
+import com.molikuner.vpapp.util.serializer
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals
