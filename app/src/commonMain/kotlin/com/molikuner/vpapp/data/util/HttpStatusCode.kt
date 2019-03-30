@@ -1,4 +1,4 @@
-package com.molikuner.vpapp.util
+package com.molikuner.vpapp.data.util
 
 import io.ktor.http.HttpStatusCode
 

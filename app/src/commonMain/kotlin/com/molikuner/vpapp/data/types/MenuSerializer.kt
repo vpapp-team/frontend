@@ -3,9 +3,9 @@ package com.molikuner.vpapp.data.types
 import com.molikuner.vpapp.data.local.Menu
 import com.molikuner.vpapp.types.Time
 import com.molikuner.vpapp.types.UUID
-import com.molikuner.vpapp.util.SerialArrayClassDescImpl
-import com.molikuner.vpapp.util.serializer
-import com.molikuner.vpapp.util.use
+import com.molikuner.vpapp.data.util.serialization.SerialArrayClassDescImpl
+import com.molikuner.vpapp.data.util.serialization.serializer
+import com.molikuner.vpapp.data.util.serialization.use
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer

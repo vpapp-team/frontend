@@ -37,6 +37,7 @@ object DB {
             ),
             LessonAdapter = Lesson.Adapter(
                 idAdapter = UUID.Adapter,
+                masterAdapter = UUID.Adapter,
                 dayAdapter = EnumColumnAdapter(),
                 lessonAdapter = LessonDiscriminator.Adapter,
                 clazzAdapter = ClazzDiscriminator.Adapter,
@@ -50,14 +51,12 @@ object DB {
                 idAdapter = UUID.Adapter,
                 subjectsAdapter = ListAdapter(StringSerializer),
                 mailAdapter = UUID.Adapter,
-                commentsAdapter = ListAdapter(StringSerializer),
-                timetableAdapter = ListAdapter(UUID.serializer())
+                commentsAdapter = ListAdapter(StringSerializer)
             ),
             TimetableAdapter = Timetable.Adapter(
                 idAdapter = UUID.Adapter,
                 typeAdapter = EnumColumnAdapter(),
-                activationAdapter = Time.Adapter,
-                lessonsAdapter = ListAdapter(UUID.serializer())
+                activationAdapter = Time.Adapter
             ),
             LessonRangeAdapter = LessonRange.Adapter(
                 discriminatorAdapter = LessonDiscriminator.Adapter

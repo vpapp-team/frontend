@@ -5,6 +5,7 @@ import com.molikuner.vpapp.data.remote.types.DefaultResponse
 import com.molikuner.vpapp.data.remote.types.StandInResponse
 import com.molikuner.vpapp.data.remote.types.UpdateResponse
 import com.molikuner.vpapp.data.util.APIResult
+import com.molikuner.vpapp.data.util.serialization.serializer
 import com.molikuner.vpapp.platform.Platform
 import com.molikuner.vpapp.types.Time
 import io.ktor.client.HttpClient

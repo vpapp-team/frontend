@@ -3,7 +3,6 @@ package com.molikuner.vpapp.types
 import com.squareup.sqldelight.ColumnAdapter
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
@@ -23,7 +22,7 @@ data class UUID(
     }
 
     @Serializer(forClass = UUID::class)
-    companion object : KSerializer<UUID> {
+    companion object {
         override val descriptor: SerialDescriptor = StringDescriptor.withName("UUID")
 
         override fun deserialize(decoder: Decoder): UUID {
@@ -33,8 +32,6 @@ data class UUID(
         override fun serialize(encoder: Encoder, obj: UUID) {
             encoder.encodeString(obj.toString())
         }
-
-        fun serializer(): KSerializer<UUID> = UUID
     }
 
     object Adapter : ColumnAdapter<UUID, String> {

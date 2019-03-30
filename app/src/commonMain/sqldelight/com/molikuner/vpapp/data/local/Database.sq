@@ -74,7 +74,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 getAllCalendarEvent:
 SELECT * FROM CalendarEvent;
 
-getCalendarEvents: --attention! may return multiple because of recurring
+getCalendarEvents: -- attention! may return multiple because of recurring
 SELECT * FROM CalendarEvent WHERE id IS ?;
 
 getCalendarEventsBetween:
@@ -102,6 +102,7 @@ SELECT lastUpdate FROM LastUpdate WHERE category = ?;
 
 CREATE TABLE Lesson (
     id          TEXT    AS UUID                 NOT NULL,
+    master      TEXT    AS UUID                 NOT NULL,
     day         TEXT    AS WEEKDAYS             NOT NULL,
     lesson      TEXT    AS LessonDiscriminator  NOT NULL,
     room        TEXT    AS String,
@@ -113,8 +114,8 @@ CREATE TABLE Lesson (
 );
 
 addLesson:
-INSERT INTO Lesson(id, day, lesson, room, teacher, subject, clazz, length, regularity)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO Lesson(id, master, day, lesson, room, teacher, subject, clazz, length, regularity)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 getAllLesson:
 SELECT * FROM Lesson;
@@ -142,13 +143,12 @@ CREATE TABLE Teacher (
     name        TEXT    AS String       NOT NULL,
     subjects    TEXT    AS List<String> NOT NULL,
     mail        TEXT    AS UUID         NOT NULL,
-    comments    TEXT    AS List<String> NOT NULL,
-    timetable   TEXT    AS List<UUID>   NOT NULL
+    comments    TEXT    AS List<String> NOT NULL
 );
 
 addTeacher:
-INSERT INTO Teacher(id, leftSchool, shorthand, name, subjects, mail, comments, timetable)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO Teacher(id, leftSchool, shorthand, name, subjects, mail, comments)
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 getAllTeacher:
 SELECT * FROM Teacher;
@@ -158,13 +158,12 @@ CREATE TABLE Timetable (
     id          TEXT AS UUID            NOT NULL    PRIMARY KEY,
     type        TEXT AS TimetableTypes  NOT NULL,
     master      TEXT AS String          NOT NULL,
-    activation  TEXT AS Time            NOT NULL,
-    lessons     TEXT AS List<UUID>      NOT NULL
+    activation  TEXT AS Time            NOT NULL
 );
 
 addTimetable:
-INSERT INTO Timetable(id, type, master, activation, lessons)
-VALUES (?, ?, ?, ?, ?);
+INSERT INTO Timetable(id, type, master, activation)
+VALUES (?, ?, ?, ?);
 
 getTimetable:
 SELECT * FROM Timetable WHERE master IS ?;

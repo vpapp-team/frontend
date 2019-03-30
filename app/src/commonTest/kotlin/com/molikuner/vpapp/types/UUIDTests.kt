@@ -1,6 +1,6 @@
-package com.molikuner.vpapp
+package com.molikuner.vpapp.types
 
-import com.molikuner.vpapp.types.UUID
+import com.molikuner.vpapp.data.util.serialization.serializer
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals

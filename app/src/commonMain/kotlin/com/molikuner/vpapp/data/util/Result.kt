@@ -2,8 +2,6 @@ package com.molikuner.vpapp.data.util
 
 import com.molikuner.vpapp.data.util.APIResult.Error.AbstractAPIError.APIError
 import com.molikuner.vpapp.data.util.APIResult.Error.AbstractAPIError.NothingNew
-import com.molikuner.vpapp.util.NothingNew
-import com.molikuner.vpapp.util.Version2Low
 import io.ktor.client.call.receive
 import io.ktor.client.response.HttpResponse
 import io.ktor.http.HttpStatusCode

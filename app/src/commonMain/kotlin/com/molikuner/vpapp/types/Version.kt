@@ -2,7 +2,6 @@ package com.molikuner.vpapp.types
 
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
@@ -31,10 +30,8 @@ data class Version(
     }
 
     @Serializer(forClass = Version::class)
-    companion object : KSerializer<Version> {
+    companion object {
         private const val RADIX = 16
-
-        fun serializer(): KSerializer<Version> = Version
 
         override val descriptor: SerialDescriptor = StringDescriptor.withName("Version")
 

@@ -1,4 +1,4 @@
-package com.molikuner.vpapp.data.util
+package com.molikuner.vpapp.data.util.serialization
 
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder

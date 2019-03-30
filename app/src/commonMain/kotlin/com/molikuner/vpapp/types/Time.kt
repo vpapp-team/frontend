@@ -4,7 +4,6 @@ import com.molikuner.vpapp.platform.Platform
 import com.squareup.sqldelight.ColumnAdapter
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
@@ -31,7 +30,7 @@ sealed class Time(
         }
 
         @Serializer(forClass = Day::class)
-        companion object : KSerializer<Day> {
+        companion object {
             operator fun invoke(input: String): Day {
                 return Day(input.drop(1).toLong())
             }
@@ -73,7 +72,7 @@ sealed class Time(
         }
 
         @Serializer(forClass = Timestamp::class)
-        companion object : KSerializer<Timestamp> {
+        companion object {
             operator fun invoke(input: String): Timestamp {
                 return Timestamp(input.drop(2).toLong())
             }
@@ -103,7 +102,7 @@ sealed class Time(
     }
 
     @Serializer(forClass = Time::class)
-    companion object : KSerializer<Time> {
+    companion object {
         const val DAY_IN_UNIX = 86400000L
         const val HOUR_IN_UNIX = 3600000L
         const val FIVE_MIN_IN_UNIX = 300000L

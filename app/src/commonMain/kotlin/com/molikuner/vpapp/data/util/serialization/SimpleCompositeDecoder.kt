@@ -1,15 +1,8 @@
-package com.molikuner.vpapp.util
+package com.molikuner.vpapp.data.util.serialization
 
 import kotlinx.serialization.CompositeDecoder
-import kotlinx.serialization.Decoder
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.PrimitiveKind
 import kotlinx.serialization.SerialDescriptor
-import kotlinx.serialization.SerialKind
-import kotlinx.serialization.decodeNullable
-import kotlinx.serialization.encodeNullable
 import kotlinx.serialization.internal.BooleanSerializer
 import kotlinx.serialization.internal.ByteSerializer
 import kotlinx.serialization.internal.CharSerializer
@@ -190,10 +183,24 @@ class SimpleCompositeDecoder(
         old: T?
     ) = updateSerializableElement(descriptor.getElementDescriptor(index), index, deserializer, old)
 
+    fun skipToEnd(elementsCount: Int = descriptor.elementsCount) {
+        val lastIndex = elementsCount - 1
+        val skippedIndex = skipToElement(lastIndex)
+        if (skippedIndex != lastIndex) return // already at end of object etc.
+        orig.decodeNullableSerializableElement(
+            SkippingIndexSerializer.descriptor,
+            skipToElement(lastIndex),
+            SkippingIndexSerializer
+        )
+    }
+
     private fun skipToElement(index: Int): Int {
         val current = decodeElementIndex(descriptor)
-        if (index > current) {
-            orig.decodeNullableSerializableElement(SkipSerializer.descriptor, current, SkipSerializer).also {
+        if (current != CompositeDecoder.READ_DONE && index > current) {
+            orig.decodeNullableSerializableElement(
+                SkippingIndexSerializer.descriptor, current,
+                SkippingIndexSerializer
+            ).also {
                 return skipToElement(index)
             }
         }
@@ -205,33 +212,6 @@ class SimpleCompositeDecoder(
     override fun hashCode() = orig.hashCode()
 
     override fun toString() = "Simple$orig"
-}
-
-private object SkipSerializer : KSerializer<Any?> {
-    override val descriptor: SerialDescriptor = object : SerialDescriptor {
-        override val elementsCount: Int get() = 0
-        override val isNullable: Boolean get() = true
-        override val kind: SerialKind get() = PrimitiveKind.STRING
-        override val name: String get() = "NoType"
-
-        override fun getElementIndex(name: String): Int = 0
-
-        override fun getElementName(index: Int): String = index.toString()
-
-        override fun isElementOptional(index: Int): Boolean = true
-    }
-
-    override fun deserialize(decoder: Decoder): Any? {
-        return patch(decoder, null)
-    }
-
-    override fun patch(decoder: Decoder, old: Any?): Any? {
-        return decoder.decodeNullable(StringSerializer)
-    }
-
-    override fun serialize(encoder: Encoder, obj: Any?) {
-        encoder.encodeNullable(StringSerializer, null)
-    }
 }
 
 fun CompositeDecoder.simple(descriptor: SerialDescriptor): SimpleCompositeDecoder =

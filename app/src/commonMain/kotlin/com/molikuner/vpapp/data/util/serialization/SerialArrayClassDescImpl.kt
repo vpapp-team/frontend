@@ -1,4 +1,4 @@
-package com.molikuner.vpapp.util
+package com.molikuner.vpapp.data.util.serialization
 
 import kotlinx.serialization.CompositeDecoder
 import kotlinx.serialization.SerialDescriptor
@@ -72,7 +72,7 @@ abstract class SerialArrayClassDescImpl(
         getElementOfIndex(index).second.first.getEntityAnnotations()
 
     override val elementsCount: Int
-        get() = items.size
+        get() = items.values.lastOrNull()?.first?.plus(1) ?: 0
 
     override fun getElementName(index: Int): String = index.toString()
     override fun getElementIndex(name: String): Int {

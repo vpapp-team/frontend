@@ -22,7 +22,7 @@ sealed class Range<T : Time>(
     ) : Range<Time.Day>(begin, end) {
 
         @Serializer(forClass = Day::class)
-        companion object : KSerializer<Day> {
+        companion object {
             operator fun invoke(input: String): Day {
                 // TODO check format
                 return decode(input, Time.Day.Companion::invoke, ::Day)
@@ -52,7 +52,7 @@ sealed class Range<T : Time>(
     ) : Range<Time.Timestamp>(begin, end) {
 
         @Serializer(forClass = Timestamp::class)
-        companion object : KSerializer<Timestamp> {
+        companion object {
             operator fun invoke(input: String): Timestamp {
                 // TODO check format
                 return decode(input, Time.Timestamp.Companion::invoke, ::Timestamp)

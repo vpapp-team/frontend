@@ -9,7 +9,6 @@ import com.molikuner.vpapp.types.UUID
 import kotlinx.serialization.CompositeDecoder
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
@@ -34,7 +33,7 @@ data class StandInResponse(
     }
 
     @Serializer(forClass = StandInResponse::class)
-    companion object : KSerializer<StandInResponse> {
+    companion object {
         const val STAND_IN = 0
         const val MOTD = 1
 
@@ -45,8 +44,6 @@ data class StandInResponse(
                 addElement(StandInResponse::remove.name)
             }
         }
-
-        fun serializer(): KSerializer<StandInResponse> = StandInResponse
 
         override fun deserialize(decoder: Decoder): StandInResponse {
             if (decoder !is JsonInput) throw SerializationException("RemoteStandIn should always be of type json")

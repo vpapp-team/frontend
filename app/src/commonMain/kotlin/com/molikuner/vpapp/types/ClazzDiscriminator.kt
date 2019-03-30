@@ -3,7 +3,6 @@ package com.molikuner.vpapp.types
 import com.squareup.sqldelight.ColumnAdapter
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
@@ -21,10 +20,8 @@ data class ClazzDiscriminator(
     override fun toString() = discriminator
 
     @Serializer(forClass = ClazzDiscriminator::class)
-    companion object : KSerializer<ClazzDiscriminator> {
+    companion object {
         override val descriptor: SerialDescriptor = StringDescriptor.withName("ClazzDiscriminator")
-
-        fun serializer(): KSerializer<ClazzDiscriminator> = ClazzDiscriminator
 
         override fun deserialize(decoder: Decoder): ClazzDiscriminator {
             return ClazzDiscriminator(decoder.decodeString())
