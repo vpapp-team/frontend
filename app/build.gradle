@@ -67,8 +67,8 @@ kotlin {
         }
         commonTest {
             dependencies {
-        		implementation kotlin('test-common')
-        		implementation kotlin('test-annotations-common')
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
                 implementation kotlin('reflect')
                 api 'org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.1.1'
                 api 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.10.0'
@@ -139,10 +139,7 @@ kotlin {
 //}
 
 sqldelight {
-    packageName = 'com.molikuner.vpapp.data.local'
-    sourceSet = files('src/commonMain/sqldelight')
-    //Database {
-    //    packageName = 'com.molikuner.vpapp.data.local'
-    //    sourceFolders = ['sqldelight']
-    //}
+    Database {
+        packageName = 'com.molikuner.vpapp.data.local'
+    }
 }
