@@ -19,7 +19,7 @@ object MenuSerializer : KSerializer<Menu> {
             init {
                 addElement(Menu::id, 0)
                 addElement(Menu::day, 1, Time.Day.descriptor)
-                addElement(Menu::_default_, 2)
+                addElement(Menu::default, 2)
                 addElement(Menu::vegetarian, 3)
                 addElement(Menu::dessert, 4)
                 addElement(Menu::evening, 5)
@@ -31,7 +31,7 @@ object MenuSerializer : KSerializer<Menu> {
             Menu.Impl(
                 id = decodeSerializableElement(0, UUID.serializer()),
                 day = decodeSerializableElement(1, Time.Day.serializer()),
-                _default_ = decodeStringElement(2),
+                default = decodeStringElement(2),
                 vegetarian = decodeNullableStringElement(3),
                 dessert = decodeNullableStringElement(4),
                 evening = decodeNullableStringElement(5)
@@ -47,7 +47,7 @@ object MenuSerializer : KSerializer<Menu> {
         return encoder.use(descriptor) {
             encodeSerializableElement(0, UUID.serializer(), obj.id)
             encodeSerializableElement(1, Time.Day.serializer(), obj.day)
-            encodeStringElement(2, obj._default_)
+            encodeStringElement(2, obj.default)
             encodeNullableStringElement(3, obj.vegetarian)
             encodeNullableStringElement(4, obj.dessert)
             encodeNullableStringElement(5, obj.evening)
