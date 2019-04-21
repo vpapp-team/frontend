@@ -6,8 +6,6 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.PrimitiveKind
 import kotlinx.serialization.SerialDescriptor
 import kotlinx.serialization.SerialKind
-import kotlinx.serialization.decodeNullable
-import kotlinx.serialization.encodeNullable
 import kotlinx.serialization.internal.StringSerializer
 
 internal object SkippingIndexSerializer : KSerializer<Any?> {
