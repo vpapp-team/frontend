@@ -67,8 +67,8 @@ kotlin {
         }
         commonTest {
             dependencies {
-        		implementation kotlin('test-common')
-        		implementation kotlin('test-annotations-common')
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
                 implementation kotlin('reflect')
                 api 'org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.1.1'
                 api 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.10.0'
@@ -90,7 +90,7 @@ kotlin {
                 implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
                 implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha04'
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.0'
-                implementation 'com.squareup.sqldelight:android-driver:1.0.3'
+                implementation 'com.squareup.sqldelight:android-driver:1.1.3'
                 implementation 'io.ktor:ktor-client-json-jvm:1.1.3'
                 implementation 'io.ktor:ktor-client-android:1.1.3'
             }
@@ -104,7 +104,7 @@ kotlin {
         }
         iosMain {
             dependencies {
-                implementation 'com.squareup.sqldelight:ios-driver:1.0.3'
+                implementation 'com.squareup.sqldelight:ios-driver:1.1.3'
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.2.0'
             }
         }
@@ -139,10 +139,7 @@ kotlin {
 //}
 
 sqldelight {
-    packageName = 'com.molikuner.vpapp.data.local'
-    sourceSet = files('src/commonMain/sqldelight')
-    //Database {
-    //    packageName = 'com.molikuner.vpapp.data.local'
-    //    sourceFolders = ['sqldelight']
-    //}
+    Database {
+        packageName = 'com.molikuner.vpapp.data.local'
+    }
 }
